@@ -24,6 +24,20 @@ INSERT INTO CLIENTE(nome, sexo, endereco, telefone, cpf) VALUES ('Lilian', 'F', 
 INSERT INTO CLIENTE VALUES ('ANA', 'F', 'ANA@GMAIL.COM', '857485962', 85429563, 'R. MARIA DA PENHA - RIO DE JANEIRO - RJ'),
 							('PAULA', 'F', 'PAULA@GMAIL.COM', '895157584', 87546598, 'R. PIETRA DA GLÓRIA - RIO DE JANEIRO - RJ');
 							
+# Podemos construir com o SELECT
+SELECT NOW() as DATA_HORA, 'Matheus Cantarutti' as ALUNO;
+
+# Usando o alias para mudar o nome das colunas
+SELECT nome as 'CLIENTE', sexo, email, endereco
+FROM cliente;
+
+
+# Utilizando Filtro (WHERE) para a seleção de registros
+SELECT nome, sexo, endereco FROM cliente
+WHERE sexo = 'M';
+
+SELECT nome, sexo, endereco FROM cliente
+WHERE sexo = 'F';
 
 
 
