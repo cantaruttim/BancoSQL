@@ -86,3 +86,17 @@ CREATE TABLE livros (
     ano_publicacao int(4)
 );
 
+
+
+/* TABELA VERDADE */
+
+A   B   A OR B   A AND B 
+
+V   V     V         V
+V	F	  V			F
+F	F	  F 		F
+F	V	  V		   	F
+
+/* No OR basta que uma condição seja verdadeira para ser verdade */
+/* No AND todas devem ser verdadeiras para serem verdade */
+

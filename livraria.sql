@@ -42,7 +42,7 @@ SELECT nome_livro, numero_pagina FROM livros
 WHERE sexo_autor = 'F';
 
 /* Trazer os valores dos livros das editoras de São Paulo. */
-SELECT nome_livro, valor_livro FROM livros
+SELECT nome_livro, valor_livro, UF FROM livros
 WHERE UF = 'SP';
 
 /* Trazer os dados dos autores do sexo masculino que tiveram livros publicados por São Paulo ou Rio de Janeiro (Questão Desafio). */ 
@@ -50,6 +50,8 @@ SELECT nome_autor, sexo_autor FROM livros
 WHERE sexo_autor = 'M'
 AND UF='RJ'
 OR UF = 'SP';
+
+/* Esse código a baixo é diferente do código acima por conta da Tabela Verdade */
 
 SELECT nome_autor, sexo_autor FROM livros
 WHERE sexo_autor = 'M'
