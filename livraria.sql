@@ -58,7 +58,6 @@ WHERE sexo_autor = 'M'
 AND UF='SP'
 OR UF = 'RJ';
 
-
 /* Retonar apenas os registros do sexo Masculino*/
 
 SELECT nome_autor, sexo_autor FROM livros
