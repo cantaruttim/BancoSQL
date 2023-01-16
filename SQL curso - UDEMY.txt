@@ -27,7 +27,7 @@ Estou selecionando as instâncias de um conjunto
 No caso, estamos selecionando um subconjunto (clientes do sexo feminino)
 de um conjunto maior "Cliente".
 
-
+Obs¹: endereco = 'RJ' é DIFERENTE de endereco = '... ... RJ'
 
 
 */
@@ -36,6 +36,19 @@ de um conjunto maior "Cliente".
 SELECT nome, sexo FROM cliente WHERE sexo = "M";
 
 SELECT nome, endereco FROM cliente WHERE sexo = "F";
+
+
+SELECT nome, endereco FROM cliente WHERE endereco = "RJ";
+# isso retorna 'Empty set (0.01 sec)'
+
+SELECT nome, endereco FROM cliente WHERE endereco LIKE "RJ";
+# isso retorna 'Empty set (0.01 sec)'
+
+SELECT nome, endereco FROM cliente WHERE endereco LIKE "%RJ";
+# retorna todos os registros que tem endereço em 'RJ'
+
+
+
 
 
 PROJEÇÃO
