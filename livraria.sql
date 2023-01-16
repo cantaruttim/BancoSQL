@@ -14,7 +14,7 @@ CREATE TABLE livros (
 
 USE Livraria;
 SHOW TABLES;
-
+/* inserindo valor dentro da tabela livros */ 
 INSERT INTO livros VALUES('Cavaleiro Real','Ana Claudia','F',465,'Atlas',49.9,'RJ',2009);
 INSERT INTO livros VALUES('SQL para leigos','João Nunes','M',450,'Addison',98,'SP',2018);
 INSERT INTO livros VALUES('Receitas Caseiras','Celia Tavares','F',210,'Atlas',45,'RJ',2008);
@@ -30,7 +30,8 @@ INSERT INTO livros VALUES('O poder da mente','Clara Mafra','F',120,'Continental'
 SELECT * FROM livros;
 
 /* Trazer o nome do livro e o nome da editora */
-SELECT nome_livro, nome_editora FROM livros;
+SELECT nome_livro as "Nome do Livro", nome_editora as "Editora" 
+FROM livros;
 
 /* Trazer o nome do livro e a UF dos livros publicados por autores do sexo masculino */
 SELECT nome_livro, UF FROM livros
@@ -49,7 +50,6 @@ SELECT nome_autor, sexo_autor FROM livros
 WHERE sexo_autor = 'M'
 AND UF='RJ'
 OR UF = 'SP';
-
 
 SELECT nome_autor, sexo_autor FROM livros
 WHERE sexo_autor = 'M'
