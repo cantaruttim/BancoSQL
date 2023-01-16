@@ -68,3 +68,21 @@ JUNÇÃO
 */
 
 # filtros
+
+
+
+
+
+
+
+CREATE TABLE livros (
+	nome_livro varchar(30),
+	nome_autor varchar(1),
+    sexo_autor char(1),
+    numero_pagina 			,
+    nome_editora varchar(50),
+    valor_livro  int(5)   ,
+    estado_editora char(2),
+    ano_publicacao int(4)
+);
+
