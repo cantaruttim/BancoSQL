@@ -5,12 +5,11 @@ CREATE TABLE livros (
 	nome_livro VARCHAR(100),
 	nome_autor VARCHAR(100),
     sexo_autor CHAR(1),
-    numero_pagina tinyint(5),
+    numero_pagina INT(5),
     nome_editora VARCHAR(30),
     valor_livro FLOAT(10,2), /* 10 casas, com 2 decimais*/
     UF CHAR(2),
-    ano_publicacao tinyint(4)
-    
+    ano_publicacao INT(4)
 );
 
 USE Livraria;
@@ -26,5 +25,24 @@ INSERT INTO livros VALUES('Estacio Querido','Geraldo Francisco','M',310,'Insigni
 INSERT INTO livros VALUES('Pra sempre amigas','Leda Silva','F',510,'Insignia',78,'ES',2011);
 INSERT INTO livros VALUES('Copas Inesqueciveis','Marco Alcantara','M',200,'Larson',130,'RS',2018);
 INSERT INTO livros VALUES('O poder da mente','Clara Mafra','F',120,'Continental',56,'SP',2017);
+
+/* retornando todos os registros */
+SELECT * FROM livros;
+
+/* Trazer o nome do livro e o nome da editora */
+SELECT nome_livro, nome_editora FROM livros;
+
+/* Trazer o nome do livro e a UF dos livros publicados por autores do sexo masculino */
+SELECT nome_livro, UF FROM livros
+WHERE sexo_autor = 'M';
+
+/*  Trazer o nome do livro e o número de páginas dos livros publicados por autores do sexo feminino */ 
+SELECT nome_livro, numero_pagina FROM livros
+WHERE sexo_autor = 'F';
+
+/* Trazer os valores dos livros das editoras de São Paulo. */
+
+
+
 
 
