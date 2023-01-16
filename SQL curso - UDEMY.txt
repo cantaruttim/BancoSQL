@@ -1,0 +1,57 @@
+// quando trabalhamos com banco de dados (ou qq outra linguagem de programação), a Tabela verdade é muito importante
+
+nome varchar(30) 
+sexo char(1)
+email varchar(30)
+cpf int(11)
+telefone varchar(30)
+endereco varchar(100)
+
+
+# INSERINDO DADOS NA TABELA
+INSERT INTO CLIENTE VALUES ('JOÃO', 'M', 'JOAO@GMAIL.COM', '758589757', 22554488, 'R. MARIA LACERDA - RIO DE JANEIRO - RJ');
+
+
+# Podemos inserir os dados tbm da seguinte maneira. Passando as tabelas após o nome da coluna, na ordem que eu desejar. Omitindo outras (Ex. Email)
+INSERT INTO CLIENTE(nome, sexo, endereco, telefone, cpf) VALUES ('Lilian', 'F', 'Senador Soares - Tijuca, RJ', 85659955, '758354712');
+
+
+/*
+
+PROJEÇÕES
+
+SELEÇÃO
+/* filtro : filtra em quantidade de registros > por linha
+Estou selecionando as instâncias de um conjunto
+
+No caso, estamos selecionando um subconjunto (clientes do sexo feminino)
+de um conjunto maior "Cliente".
+
+
+
+
+*/
+
+
+SELECT nome, sexo FROM cliente WHERE sexo = "M";
+
+SELECT nome, endereco FROM cliente WHERE sexo = "F";
+
+
+PROJEÇÃO
+SELECT NOW() as DATA_HORA, 'Matheus Cantarutti' as ALUNO;
+
+# Usando o alias para mudar o nome das colunas
+# filtro por coluna
+SELECT nome as 'CLIENTE', sexo, email
+FROM cliente;
+
+
+
+JUNÇÃO
+
+
+
+*/
+
+# filtros
