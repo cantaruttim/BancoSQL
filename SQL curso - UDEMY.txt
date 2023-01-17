@@ -1220,3 +1220,10 @@ SELECT COUNT(*), sexo FROM funcionarios GROUP BY sexo;
 
 SELECT COUNT(*), departamento FROM funcionarios GROUP BY departamento;
 
+SELECT * FROM funcionarios 
+WHERE (departamento = 'Lar' AND sexo = 'Feminino')
+Or
+(departamento = 'Filmes' AND sexo = 'Feminino');
+
+SELECT * FROM funcionarios 
+WHERE sexo = "Masculino" OR departamento = "Jardim";
