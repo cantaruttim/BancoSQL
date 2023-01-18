@@ -1227,3 +1227,18 @@ Or
 
 SELECT * FROM funcionarios 
 WHERE sexo = "Masculino" OR departamento = "Jardim";
+
+
+
+SELECT nome as 'Nome Cliente', email as 'Email cliente'  FROM cliente WHERE sexo = 'F';
+
+
+SELECT nome as 'Nome Cliente' FROM cliente WHERE email = NULL; -- vem vazio pq é 'uma caixa sem nada dentro'
+-- portanto se vc tem nada dentro não pode igualar nada com o NULL
+
+-- portanto para verificarmos os valores vazios, utilizamos o comando a seguir:
+SELECT nome as 'Nome Cliente', endereco as 'Endereço Cliente', telefone FROM cliente WHERE email IS NULL;
+
+
+INSERT INTO CLIENTE VALUES ('Matheus', 'M', NULL, '857485962', 85429563, 'R. MARIA DA VERDADE - MG'),
+							('Pedro', 'M', NULL, '895157584', 87546598, 'Estrada da Pietra - RS');

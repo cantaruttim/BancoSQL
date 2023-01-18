@@ -1050,7 +1050,7 @@ departamento = 'Filmes';
 
 -- Contando os funcionarios de cada sexo 
 
-SELECT COUNT(*), sexo FROM funcionarios GROUP BY sexo;
+SEclienteLECT COUNT(*), sexo FROM funcionarios GROUP BY sexo;
 
 /*
 +----------+-----------+
