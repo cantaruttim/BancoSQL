@@ -40,7 +40,25 @@ Chaves Naturais (inerente ao registro), Chaves Artificiais (criamos)
 	
 -- CARDINALIDADE
 
+CLIENTE
+	- ID CLIENTE
+	- NOME
+	- CPF
+	- SEXO
+	- EMAIL
+	
+TELEFONE
+	- ID TELEFONE
+	- NUMERO
+	- TIPO (COMERCIAL, PESSOAL)
 
+
+ENDERECO
+	- ID ENDERECO
+	- RUA
+	- BAIRRO
+	- CIDADE
+	- ESTADO
 
 
 
