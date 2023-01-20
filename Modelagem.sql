@@ -19,5 +19,22 @@ GROUP BY sexo;
 	
 	Ex: Endereço  >>> Rua, Bairro, Cidade, Estado
 
+3. Toda tabela necessita de pelo menos um campo que identique
+todo o registro como sendo único (Chave Primária, Primary Key)
+
+	registro : tupla (ou a linha)
+	campo (COLUNA)
+	
+	
+	Ex: O CPF demonstraria que aquele registro (ou tupla) seja única
+	
+	
+Obs¹ O CPF não é uma boa maneira para identificarmos os registros como único.
+Pois modelando o banco com base em negócios, caso haja alguma mudança extra-processual
+seu banco, automaticamente será "perdido".
+
+
+Chaves Naturais (inerente ao registro), Chaves Artificiais (criamos)	
+	
 
 */
