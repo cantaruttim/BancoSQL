@@ -590,10 +590,6 @@ INSERT INTO CLIENTE VALUES(NULL,'ADRIANA','F','ADRIANA@GMAIL.COM','88556942');
 INSERT INTO CLIENTE VALUES(NULL,'JOICE','F','JOICE@GMAIL.COM','55412256');
 
 
-/* RELATORIO GERAL DE TODOS OS CLIENTES */
-
-/* RELATORIO GERAL DE TODOS OS CLIENTES (TELEFONE E ENDERECO) */
-
 DESC CLIENTE;
 
 +-----------+---------------+------+-----+---------+----------------+
@@ -635,14 +631,123 @@ DESC TELEFONE;
 +------------+-------------------------+------+-----+---------+----------------+
 4 rows in set (0.00 sec)
 
+
+
+/* RELATORIO GERAL DE TODOS OS CLIENTES */
+
+SELECT * FROM CLIENTE;
+
++-----------+----------+------+--------------------+-------------+
+| IDCLIENTE | NOME     | SEXO | EMAIL              | CPF         |
++-----------+----------+------+--------------------+-------------+
+|         1 | JOÃO     | M    | JOÃO@GMAIL.COM     | 12332123212 |
+|         2 | CARLOS   | M    | CARLOS@GMAIL.COM   | 12332987612 |
+|         3 | CLARA    | M    | CLARA@GMAIL.COM    | 12334323212 |
+|         5 | PEDRO    | M    | PEDRO@GMAIL.COM    | 12332432162 |
+|         6 | GIOVANNA | F    | GIOVANNA@GMAIL.COM | 12332123567 |
+|         7 | FELIPE   | M    | FELIPE@GMAIL.COM   | 79032123212 |
+|         8 | LUCAS    | M    | LUCAS@GMAIL.COM    | 1239873212  |
+|         9 | FLAVIO   | M    | FLAVIO@IG.COM      | 4657765     |
+|        10 | ANDRE    | M    | ANDRE@GLOBO.COM    | 7687567     |
+|        11 | GIOVANA  | F    | NULL               | 0876655     |
+|        12 | KARLA    | M    | KARLA@GMAIL.COM    | 545676778   |
+|        13 | DANIELE  | M    | DANIELE@GMAIL.COM  | 43536789    |
+|        14 | LORENA   | M    | NULL               | 774557887   |
+|        15 | EDUARDO  | M    | NULL               | 54376457    |
+|        16 | ANTONIO  | F    | ANTONIO@IG.COM     | 12436767    |
+|        17 | ANTONIO  | M    | ANTONIO@UOL.COM    | 3423565     |
+|        18 | ELAINE   | M    | ELAINE@GLOBO.COM   | 32567763    |
+|        19 | CARMEM   | M    | CARMEM@IG.COM      | 787832213   |
+|        20 | ADRIANA  | F    | ADRIANA@GMAIL.COM  | 88556942    |
+|        21 | JOICE    | F    | JOICE@GMAIL.COM    | 55412256    |
++-----------+----------+------+--------------------+-------------+
+20 rows in set (0.00 sec)
+
+
+/* RELATORIO GERAL DE TODOS OS CLIENTES (TELEFONE E ENDERECO) */
+
+select c.nome, c.sexo, c.email, t.numero, e.rua, e.bairro, e.cidade, e.estado
+from cliente c 
+inner join telefone t
+	on c.idcliente = t.id_cliente
+inner join endereco e
+	on c.idcliente = e.id_cliente;
+	
++---------+------+-------------------+----------+--------------------+-----------------+----------------+--------+
+| nome    | sexo | email             | numero   | rua                | bairro          | cidade         | estado |
++---------+------+-------------------+----------+--------------------+-----------------+----------------+--------+
+| JOÃO    | M    | JOÃO@GMAIL.COM    | 54569876 | RUA FREGUESIA      | CASA VERDE      | SÃO PAULO      | SP     |
+| JOÃO    | M    | JOÃO@GMAIL.COM    | 54328976 | RUA FREGUESIA      | CASA VERDE      | SÃO PAULO      | SP     |
+| CARLOS  | M    | CARLOS@GMAIL.COM  | 54326676 | RUA PITANGUEIRAS   | MOOCA           | SÃO PAULO      | SP     |
+| CLARA   | M    | CLARA@GMAIL.COM   | 54009876 | AV. ATLANTICA      | COPACABANA      | RIO DE JANEIRO | RJ     |
+| PEDRO   | M    | PEDRO@GMAIL.COM   | 54329876 | RUA VERGUEIRO      | MOINHO VELHO    | SÃO PAULO      | SP     |
+| FELIPE  | M    | FELIPE@GMAIL.COM  | 54377876 | AV MORUMBI         | MORUMBI         | SÃO PAULO      | SP     |
+| LUCAS   | M    | LUCAS@GMAIL.COM   | 54329996 | RUA ALAMEDA SANTOS | CERQUEIRA CESAR | SÃO PAULO      | SP     |
+| FLAVIO  | M    | FLAVIO@IG.COM     | 68976565 | RUA GUEDES         | CASCADURA       | B. HORIZONTE   | MG     |
+| FLAVIO  | M    | FLAVIO@IG.COM     | 99656675 | RUA GUEDES         | CASCADURA       | B. HORIZONTE   | MG     |
+| GIOVANA | F    | NULL              | 33567765 | RUA VISCONDESSA    | CENTRO          | RIO DE JANEIRO | RJ     |
+| GIOVANA | F    | NULL              | 88668786 | RUA VISCONDESSA    | CENTRO          | RIO DE JANEIRO | RJ     |
+| GIOVANA | F    | NULL              | 55689654 | RUA VISCONDESSA    | CENTRO          | RIO DE JANEIRO | RJ     |
+| KARLA   | M    | KARLA@GMAIL.COM   | 88687979 | RUA NELSON MANDELA | COPACABANA      | RIO DE JANEIRO | RJ     |
+| DANIELE | M    | DANIELE@GMAIL.COM | 88965676 | RUA ARAUJO LIMA    | CENTRO          | VITORIA        | ES     |
+| EDUARDO | M    | NULL              | 89966809 | AV CAPITAO ANTUNES | CENTRO          | CURITIBA       | PR     |
+| ANTONIO | F    | ANTONIO@IG.COM    | 88679978 | AV CARLOS BARROSO  | JARDINS         | SAO PAULO      | SP     |
+| ANTONIO | M    | ANTONIO@UOL.COM   | 99655768 | ALAMEDA SAMPAIO    | BOM RETIRO      | CURITIBA       | PR     |
+| ELAINE  | M    | ELAINE@GLOBO.COM  | 89955665 | RUA DA LAPA        | LAPA            | SAO PAULO      | SP     |
+| CARMEM  | M    | CARMEM@IG.COM     | 77455786 | RUA GERONIMO       | CENTRO          | RIO DE JANEIRO | RJ     |
+| CARMEM  | M    | CARMEM@IG.COM     | 89766554 | RUA GERONIMO       | CENTRO          | RIO DE JANEIRO | RJ     |
+| ADRIANA | F    | ADRIANA@GMAIL.COM | 77755785 | RUA GOMES FREIRE   | CENTRO          | RIO DE JANEIRO | RJ     |
+| ADRIANA | F    | ADRIANA@GMAIL.COM | 44522578 | RUA GOMES FREIRE   | CENTRO          | RIO DE JANEIRO | RJ     |
++---------+------+-------------------+----------+--------------------+-----------------+----------------+--------+
+22 rows in set (0.00 sec)
+
+
+
 /* RELATORIO DE HOMENS */
 
+select nome, sexo 
+from cliente
+where sexo = 'M';
 
 
++---------+------+
+| nome    | sexo |
++---------+------+
+| JOÃO    | M    |
+| CARLOS  | M    |
+| CLARA   | M    | -- temos Mulheres cadastradas como Homens
+| PEDRO   | M    |
+| FELIPE  | M    |
+| LUCAS   | M    |
+| FLAVIO  | M    |
+| ANDRE   | M    |
+| KARLA   | M    | -- temos Mulheres cadastradas como Homens
+| DANIELE | M    | -- temos Mulheres cadastradas como Homens
+| LORENA  | M    | -- temos Mulheres cadastradas como Homens
+| EDUARDO | M    |
+| ANTONIO | M    |
+| ELAINE  | M    | -- temos Mulheres cadastradas como Homens
+| CARMEM  | M    | -- temos Mulheres cadastradas como Homens
++---------+------+
+15 rows in set (0.00 sec)
 
 
+select nome, sexo 
+from cliente
+where sexo = 'F';
 
++----------+------+
+| nome     | sexo |
++----------+------+
+| GIOVANNA | F    |
+| GIOVANA  | F    |
+| ANTONIO  | F    | -- temos um Homem cadastrado como Mulher
+| ADRIANA  | F    |
+| JOICE    | F    |
++----------+------+
+5 rows in set (0.00 sec)
 
+-- atualizando os registros errados
 
 
 
@@ -659,7 +764,7 @@ DESC TELEFONE;
 
 
 
-
+/* QUANTIDADE DE HOMENS E MULHERES */
 
 
 
