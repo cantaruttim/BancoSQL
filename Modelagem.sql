@@ -32,7 +32,7 @@ todo o registro como sendo único (Chave Primária, Primary Key)
 	Ex: O CPF demonstraria que aquele registro (ou tupla) seja única
 	
 	
-Obs¹ O CPF não é uma boa maneira para identificarmos os registros como único.
+Obs¹: O CPF não é uma boa maneira para identificarmos os registros como único.
 Pois modelando o banco com base em negócios, caso haja alguma mudança extra-processual
 seu banco, automaticamente será "perdido".
 
@@ -88,6 +88,29 @@ CLIENTE 1 <POSSUI> 1 ENDERECO
 
 
 
+* Endereço é obrigatório
+* Telefone não é obrigatório, mas posso
+	cadastrar mais de um
+	
+	
+Obs²: FK é a PK de uma tabela que vai até a outra
+tabela para fazer REFERÊNCIA entre registros
+
+
+Temos que saber ler a cardinalidade para entendermos mais
+sobre a FK (Regras: 1xN, 1X1, NxN).
+
+
+- Em relacionamentos 1x1 a FK fica na tabela mais fraca
+
+- Em relacionamentos 1xN a FK sempre ficará na cardinalidade N
+
+
+
+
+
+
+
 
 
 
@@ -110,19 +133,34 @@ CREATE TABLE CLIENTE(
 );
 
 
-CREATE TABLE TELEFONE(
-	IDTELEFONE INT PRIMARY KEY AUTO_INCREMENT,
-	TIPO ENUM('Residencial', 'Celular', 'Comercial') NOT NULL,
-	NUMERO VARCHAR(10)
-
-);
-
-
-
 CREATE TABLE ENDERECO(
 	IDENDERECO INT PRIMARY KEY AUTO_INCREMENT,
 	RUA VARCHAR(30) NOT NULL,
 	BAIRRO VARCHAR(30) NOT NULL,
 	CIDADE VARCHAR(30) NOT NULL, 
-	ESTADO CHAR(2) NOT NULL
+	ESTADO CHAR(2) NOT NULL,
+	-- Reforça que o relacionamento é 1x1 (tendo um endereço para cada endereço)
+	ID_CLIENTE INT UNIQUE,
+	-- FK
+	FOREIGN KEY(ID_CLIENTE)
+	REFERENCES CLIENTE(IDCLIENTE)
 );
+
+
+
+CREATE TABLE TELEFONE(
+	IDTELEFONE INT PRIMARY KEY AUTO_INCREMENT,
+	TIPO ENUM('Res', 'Cel', 'Com') NOT NULL,
+	NUMERO VARCHAR(10) NOT NULL,
+	ID_CLIENTE INT,
+	-- FK
+	FOREIGN KEY(ID_CLIENTE) 
+	REFERENCES CLIENTE(IDCLIENTE)
+);
+
+-- DROP TABLE <nome_da_tabela>
+-- CONSTRAINTS (REGRA)
+
+
+
+
