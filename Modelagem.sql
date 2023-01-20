@@ -5,6 +5,9 @@ FROM cliente
 GROUP BY sexo;
 
 
+
+
+
 -- PRIMEIRA FORMA NORMAL  (1FN)
 
 /* 
@@ -63,11 +66,25 @@ Relacionamento
 
 Cardinalidade e Obrigatoriedade
 
-CLIENTE  <POSSUI> TELEFONE
-CLIENTE <POSSUI> ENDERECO
+Obrigatoriedade		cardinalidade
+0        ,			n
+1		 ,			1
+0		 ,			1
+0		 ,			n
+
+Já a obrigatoriedade refere se a ocorrência vai ou não acontecer
+A Cardinalidade defini o máximo 
 
 
 
+CLIENTE 1,1 <POSSUI> 0,n  TELEFONE
+CLIENTE 1,1 <POSSUI> 1,1 ENDERECO
+
+*** Nós lemos de acordo com o segundo 
+número dos relacionamentos
+
+CLIENTE 1 <POSSUI> n  TELEFONE
+CLIENTE 1 <POSSUI> 1 ENDERECO
 
 
 
@@ -75,3 +92,19 @@ CLIENTE <POSSUI> ENDERECO
 
 
 */
+
+
+
+CREATE DATABASE Comercio;
+USE Comercio;
+
+
+CREATE TABLE CLIENTE(
+	IDCLIENTE INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(30) NOT NULL,
+	-- Domínio. Informações Fixas
+	SEXO ENUM('M', 'F') NOT NULL,
+	-- Email único mas não é obrigatório
+	EMAIL VARCHAR(50) UNIQUE,
+	CPF VARCHAR(15) UNIQUE
+);
