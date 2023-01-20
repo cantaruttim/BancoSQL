@@ -1242,3 +1242,13 @@ SELECT nome as 'Nome Cliente', endereco as 'Endereço Cliente', telefone FROM cl
 
 INSERT INTO CLIENTE VALUES ('Matheus', 'M', NULL, '857485962', 85429563, 'R. MARIA DA VERDADE - MG'),
 							('Pedro', 'M', NULL, '895157584', 87546598, 'Estrada da Pietra - RS');
+							
+							
+							
+							/* selecionando os clientes que não tem o email nulo */
+							SELECT nome, sexo, endereco FROM cliente WHERE email IS NOT NULL;
+							
+							
+							/* CLAUSULA UPDATE */
+							
+							
