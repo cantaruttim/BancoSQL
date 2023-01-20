@@ -256,7 +256,7 @@ group by t.tipo;
 select 8 + 6;
 
 
-select c.idcliente, c.nome, c.sexo, c.email, e.bairro, t.tipo
+select c.idcliente, c.email, e.bairro, t.tipo
 from cliente c
 inner join endereco e
 	on c.idcliente = e.id_cliente
