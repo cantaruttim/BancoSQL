@@ -588,3 +588,50 @@ INSERT INTO CLIENTE VALUES(NULL,'ELAINE','M','ELAINE@GLOBO.COM','32567763');
 INSERT INTO CLIENTE VALUES(NULL,'CARMEM','M','CARMEM@IG.COM','787832213');
 INSERT INTO CLIENTE VALUES(NULL,'ADRIANA','F','ADRIANA@GMAIL.COM','88556942');
 INSERT INTO CLIENTE VALUES(NULL,'JOICE','F','JOICE@GMAIL.COM','55412256');
+
+
+/* RELATORIO GERAL DE TODOS OS CLIENTES */
+
+/* RELATORIO GERAL DE TODOS OS CLIENTES (TELEFONE E ENDERECO) */
+
+DESC CLIENTE;
+
++-----------+---------------+------+-----+---------+----------------+
+| Field     | Type          | Null | Key | Default | Extra          |
++-----------+---------------+------+-----+---------+----------------+
+| IDCLIENTE | int           | NO   | PRI | NULL    | auto_increment |
+| NOME      | varchar(30)   | NO   |     | NULL    |                |
+| SEXO      | enum('M','F') | NO   |     | NULL    |                |
+| EMAIL     | varchar(50)   | YES  | UNI | NULL    |                |
+| CPF       | varchar(15)   | YES  | UNI | NULL    |                |
++-----------+---------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+DESC ENDERECO;
+
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| IDENDERECO | int         | NO   | PRI | NULL    | auto_increment |
+| RUA        | varchar(30) | NO   |     | NULL    |                |
+| BAIRRO     | varchar(30) | NO   |     | NULL    |                |
+| CIDADE     | varchar(30) | NO   |     | NULL    |                |
+| ESTADO     | char(2)     | NO   |     | NULL    |                |
+| ID_CLIENTE | int         | YES  | UNI | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+
+DESC TELEFONE;
+
++------------+-------------------------+------+-----+---------+----------------+
+| Field      | Type                    | Null | Key | Default | Extra          |
++------------+-------------------------+------+-----+---------+----------------+
+| IDTELEFONE | int                     | NO   | PRI | NULL    | auto_increment |
+| TIPO       | enum('Res','Cel','Com') | NO   |     | NULL    |                |
+| NUMERO     | varchar(10)             | NO   |     | NULL    |                |
+| ID_CLIENTE | int                     | YES  | MUL | NULL    |                |
++------------+-------------------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
