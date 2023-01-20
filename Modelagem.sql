@@ -795,22 +795,30 @@ group by sexo;
 
 
 
-
-
 /* IDS E EMAIL DAS MULHERES QUE MOREM NO CENTRO DO RIO DE JANEIRO E 
 NAO TENHAM CELULAR */
 
 
 
+select c.idcliente, c.email, e.bairro
+from cliente c
+	inner join endereco e
+	on c.idcliente = e.id_cliente
+where e.estado = 'RJ'
+AND c.sexo = 'F';
 
 
 
+/* função IFNULL */
 
+-- NOME, EMAIL, NUMERO, ESTADO
 
-
-
-
-
+SELECT C.NOME, C.EMAIL, E.ESTADO, T.NUMERO
+FROM CLIENTE C
+INNER JOIN ENDERECO E
+	ON C.IDCLIENTE = E.ID_CLIENTE
+INNER JOIN TELEFONE T
+	ON C.IDCLIENTE = T.ID_CLIENTE;
 
 
 
