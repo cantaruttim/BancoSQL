@@ -508,8 +508,19 @@ DML - DATA MANIPULATION LANGUAGE
 		
 
 DDL - DATA DEFINITION LANGUAGEM
-
 		- CONTROLE DE ACESSO AOS DADOS
+		
+		definimos o tipo de dado 
+		
+		ex nome : varchar
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 DCL - DATA CONTROL LANGUAGEM
