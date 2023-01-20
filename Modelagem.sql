@@ -514,13 +514,61 @@ DDL - DATA DEFINITION LANGUAGEM
 		
 		ex nome : varchar
 		
+	CREATE TABLE PRODUTO(
+		IDPRODUTO INT PRIMARY KEY AUTO_INCREMENT,
+		NOME_PRODUTO VARCHAR(30) NOT NULL,
+		PRECO INT,
+		FRETE FLOAT(10,2) NOT NULL	
+	);	
 		
-		
-		
-		
-		
-		
-		
+	Neste comando, estamos alterando a tabela produto, 
+	definindo outro tipo de dado para a coluna preco:	
+	
+	ALTER TABLE PRODUTO
+	CHANGE PRECO VALOR_UNITARIO INT NOT NULL;	
+			
+	
+	Alterando apenas o tipo do dado da tabela produto:
+	
+	ALTER TABLE PRODUTO
+	CHANGE VALOR_UNITARIO VALOR_UNITARIO INT;
+	
+	
+	Aqui estamos alterando apenas o tipo:
+	(perceba a diferença desse comando com o change)
+	
+	alter table produto
+	modify valor_unitario varchar(50) not null;
+
+	
+	ADICIONANDO COLUNAS:
+	
+	alter table produto
+	add peso float(10,2) not null;
+	-- por padrão é adicionada na última posição
+	
+	add entre o nome_produto e valor unitario
+	
+	alter table produto
+	add column peso float(10,2) not NULL
+	after nome_produto;
+	
+	
+	
+	
+	alter table produto
+	drop COLUMN peso;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 		
 DCL - DATA CONTROL LANGUAGEM
