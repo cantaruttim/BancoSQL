@@ -288,7 +288,7 @@ INSERT INTO TELEFONE VALUES(NULL, 'CEL', '54329996', 8);
 /* 			selecção 								projeção								junção 
 
 		
-		A seleção trás um						Tudo o que quero ver 
+		A seleção trás um						Tudo o que quero ver 					Falamos de JOIN
 		subconjunto de um conjunto				na tela (será mostrado)
 		total																		
 												o resultado do:
@@ -305,8 +305,73 @@ Obs¹ SELECT <nome_coluna> >>> seleção
 	 FROM				  >>> oriegem ('de onde vem os dados')
 	 WHERE 				  >>>> seleção
 
-
+																						
 
 */
 	
+
+mysql> SELECT NOME, EMAIL, IDCLIENTE FROM CLIENTE; 				
++----------+--------------------+-----------+					
+| NOME     | EMAIL              | IDCLIENTE |
++----------+--------------------+-----------+					
+| JOÃO     | JOÃO@GMAIL.COM     |         1 |				
+| CARLOS   | CARLOS@GMAIL.COM   |         2 |
+| CLARA    | CLARA@GMAIL.COM    |         3 |
+| PEDRO    | PEDRO@GMAIL.COM    |         5 |
+| GIOVANNA | GIOVANNA@GMAIL.COM |         6 |
+| FELIPE   | FELIPE@GMAIL.COM   |         7 |
+| LUCAS    | LUCAS@GMAIL.COM    |         8 |
++----------+--------------------+-----------+
+7 rows in set (0.00 sec)
+mysql> select ID_CLIENTE, BAIRRO, CIDADE FROM ENDERECO;
++------------+-----------------+----------------+
+| ID_CLIENTE | BAIRRO          | CIDADE         |
++------------+-----------------+----------------+
+|          1 | CASA VERDE      | SÃO PAULO      |
+|          2 | MOOCA           | SÃO PAULO      |
+|          3 | COPACABANA      | RIO DE JANEIRO |
+|          5 | MOINHO VELHO    | SÃO PAULO      |
+|          6 | ABC             | SÃO PAULO      |
+|          7 | MORUMBI         | SÃO PAULO      |
+|          8 | CERQUEIRA CESAR | SÃO PAULO      |
++------------+-----------------+----------------+
+7 rows in set (0.00 sec)
+
+
+select nome, sexo, bairro, cidade
+from cliente, endereco
+where idcliente = id_cliente; -- condição que une duas tabelas (claúsula de seleção)
+
++----------+------+-----------------+----------------+
+| nome     | sexo | bairro          | cidade         |
++----------+------+-----------------+----------------+
+| JOÃO     | M    | CASA VERDE      | SÃO PAULO      |
+| CARLOS   | M    | MOOCA           | SÃO PAULO      |
+| CLARA    | M    | COPACABANA      | RIO DE JANEIRO |
+| PEDRO    | M    | MOINHO VELHO    | SÃO PAULO      |
+| GIOVANNA | F    | ABC             | SÃO PAULO      |
+| FELIPE   | M    | MORUMBI         | SÃO PAULO      |
+| LUCAS    | M    | CERQUEIRA CESAR | SÃO PAULO      |
++----------+------+-----------------+----------------+
+7 rows in set (0.00 sec)
+
+select nome, sexo, bairro, cidade
+from cliente, endereco
+where idcliente = id_cliente -- sempre verdade
+and sexo = 'M';
+
++--------+------+-----------------+----------------+
+| nome   | sexo | bairro          | cidade         |
++--------+------+-----------------+----------------+
+| JOÃO   | M    | CASA VERDE      | SÃO PAULO      |
+| CARLOS | M    | MOOCA           | SÃO PAULO      |
+| CLARA  | M    | COPACABANA      | RIO DE JANEIRO |
+| PEDRO  | M    | MOINHO VELHO    | SÃO PAULO      |
+| FELIPE | M    | MORUMBI         | SÃO PAULO      |
+| LUCAS  | M    | CERQUEIRA CESAR | SÃO PAULO      |
++--------+------+-----------------+----------------+
+6 rows in set (0.00 sec)
+
+
+
 
