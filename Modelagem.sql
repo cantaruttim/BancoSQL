@@ -553,7 +553,9 @@ DDL - DATA DEFINITION LANGUAGEM
 	add column peso float(10,2) not NULL
 	after nome_produto;
 	
-	
+	alter table produto
+	add column peso float(10,2) not NULL
+	first;
 	
 	
 	alter table produto
