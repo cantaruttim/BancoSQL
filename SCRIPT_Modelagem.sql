@@ -186,7 +186,10 @@ INSERT INTO CLIENTE VALUES(NULL,'JOICE','F','JOICE@GMAIL.COM','55412256');
 /* RELATORIO GERAL DE TODOS OS CLIENTES */
 /* RELATORIO GERAL DE TODOS OS CLIENTES (TELEFONE E ENDERECO) */
 
-select c.nome, c.sexo, c.email, c.cpf, t.numero, e.rua, e.bairro, e.cidade, e.estado
+select c.nome, c.sexo, c.email, c.cpf, 
+t.tipo, t.numero, 
+e.rua, e.bairro, e.cidade, e.estado
+
 from cliente c 
 inner join telefone t
 	on c.idcliente = t.id_cliente
@@ -195,16 +198,29 @@ inner join endereco e
 
 /* RELATORIO DE HOMENS */
 
+select c.idcliente, c.nome, c.sexo, c.email, c.cpf, 
+t.tipo, t.numero, 
+e.rua, e.bairro, e.cidade, e.estado
 
+from cliente c 
+inner join telefone t
+	on c.idcliente = t.id_cliente
+inner join endereco e
+	on c.idcliente = e.id_cliente
+where c.sexo = 'M';
 
+-- update : idcliente = 3, 12, 13, 18, 19
 
+SELECT * FROM CLIENTE
+WHERE idcliente in (3,12,13,18,19);
 
+update cliente set sexo = 'F'
+WHERE idcliente in (3,12,13,14, 18,19);
 
+update cliente set sexo = 'M'
+WHERE idcliente = 16;
 
-
-
-
-
+select idcliente, nome, sexo from cliente;
 
 /* RELATORIO DE MULHERES */
 
