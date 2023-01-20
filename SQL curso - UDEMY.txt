@@ -1256,3 +1256,19 @@ SELECT * FROM cliente;
 UPDATE cliente SET email = 'LILIAN@HOTMAIL.COM' WHERE nome = 'Lilian';
 UPDATE cliente SET email = 'MATHEUS@GMAIL.COM' WHERE nome = 'Matheus';
 UPDATE cliente SET email = 'PEDRO@HOTMAIL.COM' WHERE nome = 'Pedro';
+
+
+/* Para deletar registros é interessante fazer um COUNT antes,
+para conferir quais registros e quantos registros serão deletados */
+
+SELECT COUNT(*) FROM cliente;
+-- total de registros = 6
+
+SELECT COUNT(*) FROM cliente WHERE nome = 'Ana';
+-- retornamos apenas 1 registros
+
+DELETE FROM cliente WHERE nome = 'Ana';
+
+INSERT INTO cliente VALUES('Carla', 'F', 'carla@hotmail.com', 174827198, '75450056', 'Rua Copper Leaf - Williamsburg - KITCHENER');
+
+SELECT COUNT(*) FROM cliente GROUP BY sexo;
