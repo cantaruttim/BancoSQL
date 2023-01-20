@@ -52,7 +52,6 @@ TELEFONE
 	- NUMERO
 	- TIPO (COMERCIAL, PESSOAL)
 
-
 ENDERECO
 	- ID ENDERECO
 	- RUA
@@ -60,8 +59,12 @@ ENDERECO
 	- CIDADE
 	- ESTADO
 
+Relacionamento 
 
+Cardinalidade e Obrigatoriedade
 
+CLIENTE  <POSSUI> TELEFONE
+CLIENTE <POSSUI> ENDERECO
 
 
 
