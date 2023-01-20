@@ -748,7 +748,18 @@ where sexo = 'F';
 5 rows in set (0.00 sec)
 
 -- atualizando os registros errados
+-- update : idcliente = 3, 12, 13, 18, 19
 
+SELECT * FROM CLIENTE
+WHERE idcliente in (3,12,13,18,19);
+
+update cliente set sexo = 'F'
+WHERE idcliente in (3,12,13,14, 18,19);
+
+update cliente set sexo = 'M'
+WHERE idcliente = 16;
+
+select idcliente, nome, sexo from cliente;
 
 
 
@@ -756,19 +767,31 @@ where sexo = 'F';
 /* RELATORIO DE MULHERES */
 
 
+select c.idcliente, c.nome, c.sexo, c.email, c.cpf, 
+t.tipo, t.numero, 
+e.rua, e.bairro, e.cidade, e.estado
 
-
-
-
-
+from cliente c 
+inner join telefone t
+	on c.idcliente = t.id_cliente
+inner join endereco e
+	on c.idcliente = e.id_cliente
+where c.sexo = 'F';
 
 
 
 /* QUANTIDADE DE HOMENS E MULHERES */
 
+select COUNT(*) as QUANTIDADE, c.sexo
+from cliente c
+group by sexo;
 
-
-
++------------+------+
+| QUANTIDADE | sexo |
++------------+------+
+|         10 | M    |
+|         10 | F    |
++------------+------+
 
 
 

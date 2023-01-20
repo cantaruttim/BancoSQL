@@ -224,31 +224,47 @@ select idcliente, nome, sexo from cliente;
 
 /* RELATORIO DE MULHERES */
 
+select c.idcliente, c.nome, c.sexo, c.email, c.cpf, 
+t.tipo, t.numero, 
+e.rua, e.bairro, e.cidade, e.estado
+
+from cliente c 
+inner join telefone t
+	on c.idcliente = t.id_cliente
+inner join endereco e
+	on c.idcliente = e.id_cliente
+where c.sexo = 'F';
 
 
+/* QUANTIDADE DE HOMENS E MULHERES */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+select COUNT(*) as QUANTIDADE, c.sexo
+from cliente c
+group by sexo;
 
 
 /* IDS E EMAIL DAS MULHERES QUE MOREM NO CENTRO DO RIO DE JANEIRO E 
 NAO TENHAM CELULAR */
 
+desc cliente;
+desc telefone;
+desc endereco;
+
+select count(*) as "Qtd Contato", t.tipo
+from telefone t
+group by t.tipo; 
+select 8 + 6;
 
 
-
+select c.idcliente, c.nome, c.sexo, c.email, e.bairro, t.tipo
+from cliente c
+inner join endereco e
+	on c.idcliente = e.id_cliente
+inner join telefone t
+	on c.idcliente = t.id_cliente
+where e.estado = 'RJ'
+AND e.bairro = 'CENTRO'
+AND t.tipo != 'Cel';
 
 
 
