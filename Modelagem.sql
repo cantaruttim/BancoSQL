@@ -635,3 +635,63 @@ DESC TELEFONE;
 +------------+-------------------------+------+-----+---------+----------------+
 4 rows in set (0.00 sec)
 
+/* RELATORIO DE HOMENS */
+
+
+
+
+
+
+
+
+
+
+
+
+/* RELATORIO DE MULHERES */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* IDS E EMAIL DAS MULHERES QUE MOREM NO CENTRO DO RIO DE JANEIRO E 
+NAO TENHAM CELULAR */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
