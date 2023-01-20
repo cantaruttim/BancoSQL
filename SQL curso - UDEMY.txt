@@ -1249,6 +1249,10 @@ INSERT INTO CLIENTE VALUES ('Matheus', 'M', NULL, '857485962', 85429563, 'R. MAR
 							SELECT nome, sexo, endereco FROM cliente WHERE email IS NOT NULL;
 							
 							
-							/* CLAUSULA UPDATE */
+/* CLAUSULA UPDATE */
+				
+SELECT * FROM cliente;
 							
-							
+UPDATE cliente SET email = 'LILIAN@HOTMAIL.COM' WHERE nome = 'Lilian';
+UPDATE cliente SET email = 'MATHEUS@GMAIL.COM' WHERE nome = 'Matheus';
+UPDATE cliente SET email = 'PEDRO@HOTMAIL.COM' WHERE nome = 'Pedro';
