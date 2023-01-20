@@ -163,4 +163,86 @@ CREATE TABLE TELEFONE(
 
 
 
+mysql> DESC CLIENTE;
++-----------+---------------+------+-----+---------+----------------+
+| Field     | Type          | Null | Key | Default | Extra          |
++-----------+---------------+------+-----+---------+----------------+
+| IDCLIENTE | int           | NO   | PRI | NULL    | auto_increment |
+| NOME      | varchar(30)   | NO   |     | NULL    |                |
+| SEXO      | enum('M','F') | NO   |     | NULL    |                |
+| EMAIL     | varchar(50)   | YES  | UNI | NULL    |                |
+| CPF       | varchar(15)   | YES  | UNI | NULL    |                |
++-----------+---------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+
+
+INSERT INTO CLIENTE VALUES(NULL, 'JOÃO', 'M', 'JOÃO@GMAIL.COM', '12332123212');
+INSERT INTO CLIENTE VALUES(NULL, 'CARLOS', 'M', 'CARLOS@GMAIL.COM', '12332987612');
+INSERT INTO CLIENTE VALUES(NULL, 'CLARA', 'M', 'CLARA@GMAIL.COM', '12334323212');
+INSERT INTO CLIENTE VALUES(NULL, 'ANA', 'M', NULL, '12332123212');
+INSERT INTO CLIENTE VALUES(NULL, 'PEDRO', 'M', 'PEDRO@GMAIL.COM', '12332432162');
+INSERT INTO CLIENTE VALUES(NULL, 'GIOVANNA', 'F', 'GIOVANNA@GMAIL.COM', '12332123567');
+INSERT INTO CLIENTE VALUES(NULL, 'FELIPE', 'M', 'FELIPE@GMAIL.COM', '79032123212');
+INSERT INTO CLIENTE VALUES(NULL, 'LUCAS', 'M', 'LUCAS@GMAIL.COM', '1239873212');
+
+SELECT * FROM CLIENTE;
+
+mysql> select * from cliente;
++-----------+----------+------+--------------------+-------------+
+| IDCLIENTE | NOME     | SEXO | EMAIL              | CPF         |
++-----------+----------+------+--------------------+-------------+
+|         1 | JOÃO     | M    | JOÃO@GMAIL.COM     | 12332123212 |
+|         2 | CARLOS   | M    | CARLOS@GMAIL.COM   | 12332987612 |
+|         3 | CLARA    | M    | CLARA@GMAIL.COM    | 12334323212 |
+|         5 | PEDRO    | M    | PEDRO@GMAIL.COM    | 12332432162 |
+|         6 | GIOVANNA | F    | GIOVANNA@GMAIL.COM | 12332123567 |
+|         7 | FELIPE   | M    | FELIPE@GMAIL.COM   | 79032123212 |
+|         8 | LUCAS    | M    | LUCAS@GMAIL.COM    | 1239873212  |
++-----------+----------+------+--------------------+-------------+
+7 rows in set (0.00 sec)
+
+-- ########################################################################
+
+-- Tabela Endereco
+
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| IDENDERECO | int         | NO   | PRI | NULL    | auto_increment |
+| RUA        | varchar(30) | NO   |     | NULL    |                |
+| BAIRRO     | varchar(30) | NO   |     | NULL    |                |
+| CIDADE     | varchar(30) | NO   |     | NULL    |                |
+| ESTADO     | char(2)     | NO   |     | NULL    |                |
+| ID_CLIENTE | int         | YES  | UNI | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.01 sec)
+
+
+
+INSERT INTO ENDERECO VALUES(NULL, 'RUA FREGUESIA', 'CASA VERDE', 'SÃO PAULO', 'SP', 1);
+INSERT INTO ENDERECO VALUES(NULL, 'RUA PITANGUEIRAS', 'MOOCA', 'SÃO PAULO', 'SP', 2);
+INSERT INTO ENDERECO VALUES(NULL, 'AV. ATLANTICA', 'COPACABANA', 'RIO DE JANEIRO', 'RJ', 3);
+INSERT INTO ENDERECO VALUES(NULL, 'RUA BARATA RIBEIRO', 'COPACABANA', 'RIO DE JANEIRO', 'RJ', 4);
+INSERT INTO ENDERECO VALUES(NULL, 'RUA VERGUEIRO', 'MOINHO VELHO', 'SÃO PAULO', 'SP', 5);
+INSERT INTO ENDERECO VALUES(NULL, 'RUA ALEGRA', 'ABC', 'SÃO PAULO', 'SP', 6);
+INSERT INTO ENDERECO VALUES(NULL, 'AV MORUMBI', 'MORUMBI', 'SÃO PAULO', 'SP', 7);
+INSERT INTO ENDERECO VALUES(NULL, 'RUA ALAMEDA SANTOS', 'CERQUEIRA CESAR', 'SÃO PAULO', 'SP', 8);
+
+
+mysql> SELECT * FROM ENDERECO;
++------------+--------------------+-----------------+----------------+--------+------------+
+| IDENDERECO | RUA                | BAIRRO          | CIDADE         | ESTADO | ID_CLIENTE |
++------------+--------------------+-----------------+----------------+--------+------------+
+|          1 | RUA FREGUESIA      | CASA VERDE      | SÃO PAULO      | SP     |          1 |
+|          2 | RUA PITANGUEIRAS   | MOOCA           | SÃO PAULO      | SP     |          2 |
+|          3 | AV. ATLANTICA      | COPACABANA      | RIO DE JANEIRO | RJ     |          3 |
+|          5 | RUA VERGUEIRO      | MOINHO VELHO    | SÃO PAULO      | SP     |          5 |
+|          6 | RUA ALEGRA         | ABC             | SÃO PAULO      | SP     |          6 |
+|          7 | AV MORUMBI         | MORUMBI         | SÃO PAULO      | SP     |          7 |
+|          8 | RUA ALAMEDA SANTOS | CERQUEIRA CESAR | SÃO PAULO      | SP     |          8 |
++------------+--------------------+-----------------+----------------+--------+------------+
+7 rows in set (0.00 sec)
+
+
 
