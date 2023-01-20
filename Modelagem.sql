@@ -372,6 +372,157 @@ and sexo = 'M';
 +--------+------+-----------------+----------------+
 6 rows in set (0.00 sec)
 
+select nome, sexo, bairro, cidade
+from cliente
+inner join endereco
+on idcliente = id_cliente;
+
++----------+------+-----------------+----------------+
+| nome     | sexo | bairro          | cidade         |
++----------+------+-----------------+----------------+
+| JOÃO     | M    | CASA VERDE      | SÃO PAULO      |
+| CARLOS   | M    | MOOCA           | SÃO PAULO      |
+| CLARA    | M    | COPACABANA      | RIO DE JANEIRO |
+| PEDRO    | M    | MOINHO VELHO    | SÃO PAULO      |
+| GIOVANNA | F    | ABC             | SÃO PAULO      |
+| FELIPE   | M    | MORUMBI         | SÃO PAULO      |
+| LUCAS    | M    | CERQUEIRA CESAR | SÃO PAULO      |
++----------+------+-----------------+----------------+
+7 rows in set (0.00 sec)
 
 
+
+select nome, sexo, bairro, cidade
+from cliente
+	inner join endereco
+	on idcliente = id_cliente
+where sexo = 'F';
+
++----------+------+--------+-----------+
+| nome     | sexo | bairro | cidade    |
++----------+------+--------+-----------+
+| GIOVANNA | F    | ABC    | SÃO PAULO |
++----------+------+--------+-----------+
+1 row in set (0.00 sec)
+
+
+
+-- ex 2
+
+-- relacionamento 1xN
+
+select nome, sexo, email, tipo, numero
+from cliente
+	inner join telefone
+where idcliente = id_cliente;	
+
++--------+------+------------------+------+----------+
+| nome   | sexo | email            | tipo | numero   |
++--------+------+------------------+------+----------+
+| JOÃO   | M    | JOÃO@GMAIL.COM   | Cel  | 54569876 |
+| JOÃO   | M    | JOÃO@GMAIL.COM   | Res  | 54328976 |
+| CARLOS | M    | CARLOS@GMAIL.COM | Res  | 54326676 |
+| CLARA  | M    | CLARA@GMAIL.COM  | Res  | 54009876 |
+| PEDRO  | M    | PEDRO@GMAIL.COM  | Cel  | 54329876 |
+| FELIPE | M    | FELIPE@GMAIL.COM | Com  | 54377876 |
+| LUCAS  | M    | LUCAS@GMAIL.COM  | Cel  | 54329996 |
++--------+------+------------------+------+----------+
+7 rows in set (0.00 sec)
+
+
+/* nome, sexo, bairro, cidade, tipo, numero */
+
+select nome, sexo, bairro, cidade, tipo, numero
+from cliente 
+	inner join endereco
+on idcliente = id_cliente
+	inner join telefone
+on idcliente = id_cliente;
+
+-- >> ERROR 1052 (23000): Column 'id_cliente' in on clause is ambiguous
+
+
+-- corrigindo
+
+select cliente.nome, cliente.sexo, endereco.bairro, endereco.cidade, telefone.tipo, telefone.numero
+from cliente 
+	inner join endereco
+on cliente.idcliente = endereco.id_cliente
+	inner join telefone
+on cliente.idcliente = telefone.id_cliente;
+
++--------+------+-----------------+----------------+------+----------+
+| nome   | sexo | bairro          | cidade         | tipo | numero   |
++--------+------+-----------------+----------------+------+----------+
+| JOÃO   | M    | CASA VERDE      | SÃO PAULO      | Cel  | 54569876 |
+| JOÃO   | M    | CASA VERDE      | SÃO PAULO      | Res  | 54328976 |
+| CARLOS | M    | MOOCA           | SÃO PAULO      | Res  | 54326676 |
+| CLARA  | M    | COPACABANA      | RIO DE JANEIRO | Res  | 54009876 |
+| PEDRO  | M    | MOINHO VELHO    | SÃO PAULO      | Cel  | 54329876 |
+| FELIPE | M    | MORUMBI         | SÃO PAULO      | Com  | 54377876 |
+| LUCAS  | M    | CERQUEIRA CESAR | SÃO PAULO      | Cel  | 54329996 |
++--------+------+-----------------+----------------+------+----------+
+7 rows in set (0.00 sec)
+
+-- outra maneira de fazer a query (utilizando ponteramento):
+
+
+select c.nome, c.sexo, e.bairro, e.cidade, t.tipo, t.numero
+from cliente c
+	inner join endereco e
+on c.idcliente = e.id_cliente
+	inner join telefone t
+on c.idcliente = t.id_cliente;
+
++--------+------+-----------------+----------------+------+----------+
+| nome   | sexo | bairro          | cidade         | tipo | numero   |
++--------+------+-----------------+----------------+------+----------+
+| JOÃO   | M    | CASA VERDE      | SÃO PAULO      | Cel  | 54569876 |
+| JOÃO   | M    | CASA VERDE      | SÃO PAULO      | Res  | 54328976 |
+| CARLOS | M    | MOOCA           | SÃO PAULO      | Res  | 54326676 |
+| CLARA  | M    | COPACABANA      | RIO DE JANEIRO | Res  | 54009876 |
+| PEDRO  | M    | MOINHO VELHO    | SÃO PAULO      | Cel  | 54329876 |
+| FELIPE | M    | MORUMBI         | SÃO PAULO      | Com  | 54377876 |
+| LUCAS  | M    | CERQUEIRA CESAR | SÃO PAULO      | Cel  | 54329996 |
++--------+------+-----------------+----------------+------+----------+
+7 rows in set (0.00 sec)
+
+
+-- ######################################################################
+
+/* COMANDO DE DML 
+sql (linguagem de quarta geração)
+
+DML - DATA MANIPULATION LANGUAGE
+		- MANIPULAÇÃO DE DADOS
+		
+		insert
+		select * from
+		update
+		
+			confirme o registro antes de realizar o comando
+		
+			select * from cliente
+			where idcliente = 7;
+	
+		
+
+DDL - DATA DEFINITION LANGUAGEM
+
+		- CONTROLE DE ACESSO AOS DADOS
+		
+		
+DCL - DATA CONTROL LANGUAGEM
+		- ATOMICIDADE DO BANO
+
+
+TCL - TRANSACTION CONTROL LANGUAGE
+
+
+
+
+
+
+
+*/
 
