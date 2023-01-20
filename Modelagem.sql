@@ -36,5 +36,21 @@ seu banco, automaticamente será "perdido".
 
 Chaves Naturais (inerente ao registro), Chaves Artificiais (criamos)	
 	
+	
+	
+-- CARDINALIDADE
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 */
