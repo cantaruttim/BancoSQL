@@ -184,12 +184,9 @@ INSERT INTO CLIENTE VALUES(NULL,'JOICE','F','JOICE@GMAIL.COM','55412256');
 
 
 /* RELATORIO GERAL DE TODOS OS CLIENTES */
-
 /* RELATORIO GERAL DE TODOS OS CLIENTES (TELEFONE E ENDERECO) */
 
-/* RELATORIO GERAL DE TODOS OS CLIENTES (TELEFONE E ENDERECO) */
-
-select c.nome, c.sexo, c.email, t.numero, e.rua, e.bairro, e.cidade, e.estado
+select c.nome, c.sexo, c.email, c.cpf, t.numero, e.rua, e.bairro, e.cidade, e.estado
 from cliente c 
 inner join telefone t
 	on c.idcliente = t.id_cliente
