@@ -246,3 +246,67 @@ mysql> SELECT * FROM ENDERECO;
 
 
 
+-- ##############################################################################################
+
+
+-- TABELA TELEFONE
+
++------------+-------------------------+------+-----+---------+----------------+
+| Field      | Type                    | Null | Key | Default | Extra          |
++------------+-------------------------+------+-----+---------+----------------+
+| IDTELEFONE | int                     | NO   | PRI | NULL    | auto_increment |
+| TIPO       | enum('Res','Cel','Com') | NO   |     | NULL    |                |
+| NUMERO     | varchar(10)             | NO   |     | NULL    |                |
+| ID_CLIENTE | int                     | YES  | MUL | NULL    |                |
++------------+-------------------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+INSERT INTO TELEFONE VALUES(NULL, 'CEL', '54569876', 1);
+INSERT INTO TELEFONE VALUES(NULL, 'RES', '54328976', 1);
+INSERT INTO TELEFONE VALUES(NULL, 'RES', '54009876', 3);
+INSERT INTO TELEFONE VALUES(NULL, 'CEL', '54329876', 5);
+INSERT INTO TELEFONE VALUES(NULL, 'RES', '54326676', 2);
+INSERT INTO TELEFONE VALUES(NULL, 'COM', '54377876', 7);
+INSERT INTO TELEFONE VALUES(NULL, 'CEL', '54329996', 8);
+
+-- RELACIONAMENTO 1xN
++------------+------+----------+------------+
+| IDTELEFONE | TIPO | NUMERO   | ID_CLIENTE |
++------------+------+----------+------------+
+|          1 | Cel  | 54329876 |          5 |
+|          2 | Cel  | 54569876 |          1 |   -- AUSENCIA DE UNIQUE
+|          3 | Res  | 54328976 |          1 | 	-- AUSENCIA DE UNIQUE
+|          4 | Res  | 54009876 |          3 |
+|          7 | Res  | 54326676 |          2 |
+|          8 | Com  | 54377876 |          7 |
+|          9 | Cel  | 54329996 |          8 |
++------------+------+----------+------------+
+7 rows in set (0.00 sec)
+
+
+
+/* 			selecção 								projeção								junção 
+
+		
+		A seleção trás um						Tudo o que quero ver 
+		subconjunto de um conjunto				na tela (será mostrado)
+		total																		
+												o resultado do:
+		* subconjunto de telefone				SELECT * FROM <tabela>	
+		select numero from telefone 
+		where tipo ='cel';						é uma projeção
+												
+
+									
+
+
+
+Obs¹ SELECT <nome_coluna> >>> seleção
+	 FROM				  >>> oriegem ('de onde vem os dados')
+	 WHERE 				  >>>> seleção
+
+
+
+*/
+	
+
