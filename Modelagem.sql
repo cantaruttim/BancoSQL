@@ -862,6 +862,16 @@ INNER JOIN ENDERECO E
 	
 -- Crianção de DML:
 
+/* 
+
+
+Não podemos inserir, deletar de views. Mas podemos atualizar!!! 
+
+
+
+
+
+*/
 
 ERROR 1394 (HY000): Can not insert into join view 'comercio.v_relatorio' without fields list
 
