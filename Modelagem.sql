@@ -865,11 +865,10 @@ INNER JOIN ENDERECO E
 /* 
 
 
-Não podemos inserir, deletar de views. Mas podemos atualizar!!! 
+Não podemos inserir, deletar de views. Mas podemos atualizar!!! A condição para isso
+é ter JOIN;
 
-
-
-
+Quando não temos JOIN na view, podemos inserir e deletar.
 
 */
 
@@ -877,3 +876,49 @@ ERROR 1394 (HY000): Can not insert into join view 'comercio.v_relatorio' without
 
 INSERT INTO V_RELATORIO VALUES('ANDRÉIA', 'F', 'ANDREIA@GMAIL.COM', 'CEL',
 								'85446598', 'CENTRO', 'VITÓRIA', 'ES');
+								
+								
+-- ORDENANDO DADOS:
+
+CREATE TABLE ALUNOS(
+	NUMERO INT,
+	NOME VARCHAR(30)
+);
+
+INSERT INTO ALUNOS VALUES(1,'JOAO');
+INSERT INTO ALUNOS VALUES(1,'MARIA');
+INSERT INTO ALUNOS VALUES(2,'ZOE');
+INSERT INTO ALUNOS VALUES(2,'ANDRE');
+INSERT INTO ALUNOS VALUES(3,'CLARA');
+INSERT INTO ALUNOS VALUES(1,'CLARA');
+INSERT INTO ALUNOS VALUES(4,'MAFRA');
+INSERT INTO ALUNOS VALUES(5,'JANAINA');
+INSERT INTO ALUNOS VALUES(1,'JANAINA');
+INSERT INTO ALUNOS VALUES(3,'MARCELO');
+INSERT INTO ALUNOS VALUES(4,'GIOVANI');
+INSERT INTO ALUNOS VALUES(5,'ANTONIO');
+INSERT INTO ALUNOS VALUES(6,'ANA');
+INSERT INTO ALUNOS VALUES(6,'VIVIANE');
+
+
+SELECT * FROM ALUNOS
+    -> ORDER BY NUMERO;
++--------+---------+
+| NUMERO | NOME    |
++--------+---------+
+|      1 | JOAO    |
+|      1 | MARIA   |
+|      1 | CLARA   |
+|      1 | JANAINA |
+|      2 | ZOE     |
+|      2 | ANDRE   |
+|      3 | CLARA   |
+|      3 | MARCELO |
+|      4 | MAFRA   |
+|      4 | GIOVANI |
+|      5 | JANAINA |
+|      5 | ANTONIO |
+|      6 | ANA     |
+|      6 | VIVIANE |
++--------+---------+
+14 rows in set (0.00 sec)
