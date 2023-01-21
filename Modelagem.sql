@@ -902,7 +902,7 @@ INSERT INTO ALUNOS VALUES(6,'VIVIANE');
 
 
 SELECT * FROM ALUNOS
-    -> ORDER BY NUMERO;
+ORDER BY NUMERO;
 +--------+---------+
 | NUMERO | NOME    |
 +--------+---------+
@@ -920,5 +920,28 @@ SELECT * FROM ALUNOS
 |      5 | ANTONIO |
 |      6 | ANA     |
 |      6 | VIVIANE |
++--------+---------+
+14 rows in set (0.00 sec)
+
+SELECT * FROM ALUNOS
+ORDER BY NOME;
+
++--------+---------+
+| NUMERO | NOME    |
++--------+---------+
+|      6 | ANA     |
+|      2 | ANDRE   |
+|      5 | ANTONIO |
+|      3 | CLARA   |
+|      1 | CLARA   |
+|      4 | GIOVANI |
+|      5 | JANAINA |
+|      1 | JANAINA |
+|      1 | JOAO    |
+|      4 | MAFRA   |
+|      3 | MARCELO |
+|      1 | MARIA   |
+|      6 | VIVIANE |
+|      2 | ZOE     |
 +--------+---------+
 14 rows in set (0.00 sec)
