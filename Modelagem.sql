@@ -858,3 +858,12 @@ INNER JOIN TELEFONE T
 	ON C.IDCLIENTE = T.ID_CLIENTE
 INNER JOIN ENDERECO E
 	ON C.IDCLIENTE = E.ID_CLIENTE;
+	
+	
+-- Crianção de DML:
+
+
+ERROR 1394 (HY000): Can not insert into join view 'comercio.v_relatorio' without fields list
+
+INSERT INTO V_RELATORIO VALUES('ANDRÉIA', 'F', 'ANDREIA@GMAIL.COM', 'CEL',
+								'85446598', 'CENTRO', 'VITÓRIA', 'ES');
