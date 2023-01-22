@@ -996,3 +996,72 @@ SELECT NOME FROM ALUNOS ORDER BY 1;
 | ZOE     |
 +---------+
 14 rows in set (0.00 sec)
+
+-- order by DESC / ASC
+
+SELECT NOME FROM ALUNOS ORDER BY 1 DESC;
++---------+
+| NOME    |
++---------+
+| ZOE     |
+| VIVIANE |
+| MARIA   |
+| MARCELO |
+| MAFRA   |
+| JOAO    |
+| JANAINA |
+| JANAINA |
+| GIOVANI |
+| CLARA   |
+| CLARA   |
+| ANTONIO |
+| ANDRE   |
+| ANA     |
++---------+
+14 rows in set (0.00 sec)
+
+SELECT NUMERO, NOME FROM ALUNOS ORDER BY 1 DESC;
++--------+---------+
+| NUMERO | NOME    |
++--------+---------+
+|      6 | ANA     |
+|      6 | VIVIANE |
+|      5 | JANAINA |
+|      5 | ANTONIO |
+|      4 | MAFRA   |
+|      4 | GIOVANI |
+|      3 | CLARA   |
+|      3 | MARCELO |
+|      2 | ZOE     |
+|      2 | ANDRE   |
+|      1 | JOAO    |
+|      1 | MARIA   |
+|      1 | CLARA   |
+|      1 | JANAINA |
++--------+---------+
+14 rows in set (0.00 sec)
+
+
+-- o ASC é default,
+
+SELECT NUMERO, NOME FROM ALUNOS ORDER BY 1 ASC;
++--------+---------+
+| NUMERO | NOME    |
++--------+---------+
+|      1 | JOAO    |
+|      1 | MARIA   |
+|      1 | CLARA   |
+|      1 | JANAINA |
+|      2 | ZOE     |
+|      2 | ANDRE   |
+|      3 | CLARA   |
+|      3 | MARCELO |
+|      4 | MAFRA   |
+|      4 | GIOVANI |
+|      5 | JANAINA |
+|      5 | ANTONIO |
+|      6 | ANA     |
+|      6 | VIVIANE |
++--------+---------+
+14 rows in set (0.00 sec)
+
