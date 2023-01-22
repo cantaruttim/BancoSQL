@@ -946,3 +946,53 @@ ORDER BY NOME;
 +--------+---------+
 14 rows in set (0.00 sec)
 
+
+SELECT * FROM ALUNOS
+ORDER BY 2;
+
+SELECT * FROM ALUNOS
+ORDER BY NUMERO, NOME;
+
++--------+---------+
+| NUMERO | NOME    |
++--------+---------+
+|      1 | CLARA   |
+|      1 | JANAINA |
+|      1 | JOAO    |
+|      1 | MARIA   |
+|      2 | ANDRE   |
+|      2 | ZOE     |
+|      3 | CLARA   |
+|      3 | MARCELO |
+|      4 | GIOVANI |
+|      4 | MAFRA   |
+|      5 | ANTONIO |
+|      5 | JANAINA |
+|      6 | ANA     |
+|      6 | VIVIANE |
++--------+---------+
+14 rows in set (0.00 sec)
+
+-- É necessário fazer as ordenações que correspondem aos índices das projeções;
+
+
+SELECT NOME FROM ALUNOS ORDER BY 1;
++---------+
+| NOME    |
++---------+
+| ANA     |
+| ANDRE   |
+| ANTONIO |
+| CLARA   |
+| CLARA   |
+| GIOVANI |
+| JANAINA |
+| JANAINA |
+| JOAO    |
+| MAFRA   |
+| MARCELO |
+| MARIA   |
+| VIVIANE |
+| ZOE     |
++---------+
+14 rows in set (0.00 sec)
