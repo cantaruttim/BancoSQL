@@ -413,6 +413,10 @@ Boa prática é criar a tabela primeiro e posteriormente
 as constraints, pois podemos atribuir nomes as CONSTRAINTS
 -- Isso é importante para os dicionários de dados
 
+*** Auxilia na criação das tabelas de forma a não criar dependências
+
+
+
  */
  
  --------------------------------------------------------------------------------------------------+
@@ -427,3 +431,6 @@ as constraints, pois podemos atribuir nomes as CONSTRAINTS
 +-------+------------------------------------------------------------------------------------------
 
 
+DROP TABLE ENDERECO;
+DROP TABLE TELEFONE;
+DROP TABLE CLIENTE;
