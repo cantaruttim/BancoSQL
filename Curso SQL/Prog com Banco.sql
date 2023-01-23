@@ -156,3 +156,44 @@ SELECT MAX(JANEIRO) AS MAX_JANEIRO,
 |   176234.78 |    74234.78 |     125734.78 |
 +-------------+-------------+---------------+
 1 row in set (0.00 sec)
+
+
+-- função SUM
+
+SELECT SUM(JANEIRO) AS SOMA_JANEIRO FROM VENDEDORES;
+
++--------------+
+| SOMA_JANEIRO |
++--------------+
+|    502939.12 |
++--------------+
+1 row in set (0.00 sec)
+
+SELECT SUM(JANEIRO) AS SOMA_JANEIRO,
+	   SUM(FEVEREIRO) AS SOMA_FEVEREIRO,
+	   SUM(MARCO) AS SOMA_MARCO
+FROM VENDEDORES;
+
+
++--------------+----------------+------------+
+| SOMA_JANEIRO | SOMA_FEVEREIRO | SOMA_MARCO |
++--------------+----------------+------------+
+|    502939.12 |      848485.78 | 1628923.22 |
++--------------+----------------+------------+
+1 row in set (0.00 sec)
+
+
+SELECT SEXO, SUM(MARCO) AS TOTAL_MARCO
+FROM VENDEDORES
+GROUP BY 1;
+
++------+-------------+
+| SEXO | TOTAL_MARCO |
++------+-------------+
+| M    |   187811.59 |
+| F    |  1441111.62 |
++------+-------------+
+2 rows in set (0.01 sec)
+
+
+
