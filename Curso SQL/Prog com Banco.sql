@@ -307,6 +307,29 @@ SELECT NOME,
 8 rows in set (0.00 sec)
 
 
+/* ALTERANDO ESTRUTURA DA TABELA */
+
+CREATE TABLE TABELA(
+	COL1 VARCHAR(30),
+	COL2 VARCHAR(30),
+	COL3 VARCHAR(30)
+);
+
+
+-- ADD UMA PK
+
+-- Quando fazemos desta forma, não temos
+-- como adicionar o incremeto automático
+
+ALTER TABLE TABELA
+ADD PRIMARY KEY (COL1);
+
+-- ADD UMA COLUNA 
+
+ALTER TABLE TABELA
+ADD COLUNA_ADDED VARCHAR(30);
+
+
 
 
 
