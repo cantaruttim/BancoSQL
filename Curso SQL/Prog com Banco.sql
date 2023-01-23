@@ -233,6 +233,22 @@ WHERE MARCO > (SELECT AVG(MARCO) FROM VENDEDORES);
 1 row in set (0.00 sec)
 
 
+SELECT NOME, MARCO FROM VENDEDORES
+WHERE MARCO < (SELECT AVG(MARCO) FROM VENDEDORES);
+
++-----------+-----------+
+| NOME      | MARCO     |
++-----------+-----------+
+| CARLOS    |  95555.80 |
+| MARIA     | 495555.81 |
+| JOÃO      |  92255.80 |
+| FLÁVIA    | 945555.81 |
+| PEDRO     | 232145.80 |
+| LETÍCIA   | 542344.81 |
+| GABRIELLA | 941235.81 |
++-----------+-----------+
+7 rows in set (0.00 sec)
+
 
 
 
