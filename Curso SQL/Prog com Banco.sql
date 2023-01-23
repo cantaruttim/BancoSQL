@@ -434,3 +434,20 @@ as constraints, pois podemos atribuir nomes as CONSTRAINTS
 DROP TABLE ENDERECO;
 DROP TABLE TELEFONE;
 DROP TABLE CLIENTE;
+
+
+----------------------------------------------------------------------------
+
+
+CREATE TABLE CLIENTE(
+	IDCLIENTE INT,
+	NOME VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE TELEFONE(
+	IDTELEFONE INT, 
+	TIPO CHAR(3) NOT NULL,
+	NUMERO VARCHAR(10) NOT NULL,
+	ID_CLIENTE INT
+);
+
