@@ -413,6 +413,17 @@ Boa prática é criar a tabela primeiro e posteriormente
 as constraints, pois podemos atribuir nomes as CONSTRAINTS
 -- Isso é importante para os dicionários de dados
 
-
-
  */
+ 
+ --------------------------------------------------------------------------------------------------+
+| TIMES | CREATE TABLE `times` (
+  `IDTIME` int NOT NULL AUTO_INCREMENT,
+  `NOMETIME` varchar(30) DEFAULT NULL,
+  `ID_JOGADOR` int DEFAULT NULL,
+  PRIMARY KEY (`IDTIME`),
+  KEY `ID_JOGADOR` (`ID_JOGADOR`),
+  CONSTRAINT `times_ibfk_1` FOREIGN KEY (`ID_JOGADOR`) REFERENCES `jogador` (`IDJOGADOR`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+------------------------------------------------------------------------------------------
+
+
