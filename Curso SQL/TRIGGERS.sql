@@ -14,3 +14,6 @@ $
 
 
 use information_schema;
+show tables;
+
+DESC TRIGGERS;
