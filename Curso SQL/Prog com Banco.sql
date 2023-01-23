@@ -455,3 +455,22 @@ CREATE TABLE TELEFONE(
 
 ALTER TABLE CLIENTE ADD CONSTRAINT PK_CLIENTE
 PRIMARY KEY(IDCLIENTE);
+
+ALTER TABLE TELEFONE ADD CONSTRAINT FK_CLIENTE_TELEFONE
+FOREIGN KEY(ID_CLIENTE) REFERENCES CLIENTE(IDCLIENTE);
+
+SHOW CREATE TABLE TELEFONE;
+
+--------------------------------------------------------------------------------------------------------+
+| TELEFONE | CREATE TABLE `telefone` (
+  `IDTELEFONE` int DEFAULT NULL,
+  `TIPO` char(3) NOT NULL,
+  `NUMERO` varchar(10) NOT NULL,
+  `ID_CLIENTE` int DEFAULT NULL,
+  KEY `FK_CLIENTE_TELEFONE` (`ID_CLIENTE`),
+  CONSTRAINT `FK_CLIENTE_TELEFONE` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `cliente` (`IDCLIENTE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++----------+---------------------------------------------------------------------------------------------
+
+
+
