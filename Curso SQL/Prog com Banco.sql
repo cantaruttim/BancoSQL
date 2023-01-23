@@ -474,3 +474,56 @@ SHOW CREATE TABLE TELEFONE;
 
 
 
+-- DICIONÁRIO DE DADOS
+-- RESPONSÁVEL POR GUARDAR OS METADADOS;
+
+SHOW DATABASES;
+
+-- PROCURANDO UMA CONSTRAINT
+
+
+USE INFORMATION_SCHEMA;
+
+SHOW TABLES;
+
+DESC  TABLE_CONSTRAINTS;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| CONSTRAINT_CATALOG | varchar(64) | YES  |     | NULL    |       |
+| CONSTRAINT_SCHEMA  | varchar(64) | YES  |     | NULL    |       |
+| CONSTRAINT_NAME    | varchar(64) | YES  |     | NULL    |       |
+| TABLE_SCHEMA       | varchar(64) | YES  |     | NULL    |       |
+| TABLE_NAME         | varchar(64) | YES  |     | NULL    |       |
+| CONSTRAINT_TYPE    | varchar(11) | NO   |     |         |       |
+| ENFORCED           | varchar(3)  | NO   |     |         |       |
++--------------------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+SELECT CONSTRAINT_SCHEMA AS 'BANCO',
+ CONSTRAINT_NAME AS 'Nome da Constraint',
+ TABLE_NAME AS 'TABELA', 
+ CONSTRAINT_TYPE AS 'TIPO'
+FROM TABLE_CONSTRAINTS
+WHERE CONSTRAINT_SCHEMA = "COMERCIO";
+
++----------+---------------------+------------+-------------+
+| BANCO    | Nome da Constraint  | TABELA     | TIPO        |
++----------+---------------------+------------+-------------+
+| comercio | PRIMARY             | cliente    | PRIMARY KEY |
+| comercio | COLUNA4             | pessoa     | UNIQUE      |
+| comercio | PRIMARY             | pessoa     | PRIMARY KEY |
+| comercio | FK_CLIENTE_TELEFONE | telefone   | FOREIGN KEY |
+| comercio | PRIMARY             | time       | PRIMARY KEY |
+| comercio | time_ibfk_1         | time       | FOREIGN KEY |
+| comercio | PRIMARY             | vendedores | PRIMARY KEY |
++----------+---------------------+------------+-------------+
+7 rows in set (0.00 sec)
+
+/* apagando uma constraint */
+-- IMPORTANTE PARA INSERÇÃO EM MASSA
+
+
+USE COMERCIO;
+ALTER TABLE TELEFONE DROP FOREIGN KEY  FK_CLIENTE_TELEFONE ;
+
