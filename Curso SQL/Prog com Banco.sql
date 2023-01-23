@@ -389,10 +389,30 @@ CREATE TABLE TIMES(
 );
 
 
+INSERT INTO JOGADOR VALUES(NULL, 'GUERREIRO');
+INSERT INTO TIMES VALUES(NULL, 'FLAMENGO', 1);
+
+
+INSERT INTO JOGADOR VALUES(NULL, 'NEYMAR');
+INSERT INTO TIMES VALUES(NULL, 'PSG', 2);
+
+
+INSERT INTO JOGADOR VALUES(NULL, 'MARTA');
+INSERT INTO TIMES VALUES(NULL, 'SELEÇÃO BRASILEIRA', 3);
+
+SHOW CREATE TABLE JOGADOR;
+SHOW CREATE TABLE TIMES;
+
+
+/* CONSTRAINT `times_ibfk_1` FOREIGN KEY (`ID_JOGADOR`) 
+	REFERENCES `jogador` (`IDJOGADOR`) */
+
+/*
+
+Boa prática é criar a tabela primeiro e posteriormente 
+as constraints, pois podemos atribuir nomes as CONSTRAINTS
+-- Isso é importante para os dicionários de dados
 
 
 
-
-
-
-
+ */
