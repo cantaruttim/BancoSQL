@@ -224,3 +224,13 @@ SELECT * FROM backup.bkp_produto;
 1 row in set (0.00 sec)
 
 */
+
+SELECT C.NOME AS CURSO,
+	   C.VALOR AS VALOR,
+	   C.HORAS AS CARGA,
+	   IFNULL(P.NOME, '----') AS PREREQ
+FROM CURSOS C LEFT JOIN CURSOS P
+	ON P.IDCURSO = C.ID_PREREQ; 	   
+
+
+
