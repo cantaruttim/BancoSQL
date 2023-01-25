@@ -160,15 +160,67 @@ INSERT INTO PRODUTO VALUES(NULL, 'LIVRO MODELAGEM',50.00);
 INSERT INTO PRODUTO VALUES(NULL, 'LIVRO PYTHON', 99.80);
 INSERT INTO PRODUTO VALUES(NULL, 'LIVRO SQL PARA DADOS', 180.00);
 
+/*
+SELECT * FROM produto;
++-----------+----------------------+--------+
+| idproduto | nome                 | valor  |
++-----------+----------------------+--------+
+|         1 | LIVRO MODELAGEM      |  50.00 |
+|         2 | LIVRO PYTHON         |  99.80 |
+|         3 | LIVRO SQL PARA DADOS | 180.00 |
++-----------+----------------------+--------+
+3 rows in set (0.00 sec)
+
+*/
+
 CREATE DATABASE backup;
 
-CREATE TABLE BK_PRODUTO(
+CREATE TABLE BKP_PRODUTO(
 	idbkp INT PRIMARY KEY AUTO_INCREMENT,
 	idproduto INT,
 	nome VARCHAR(30),
-	valor FLOAT(10,2)
+	valor_original FLOAT(10,2),
+	valor_alterado FLOAT(10,2),
+	data DATETIME,
+	usuario VARCHAR(30),
+	evento CHAR(1)
 );
 
 
+/* Quando e Quem ~ fez alguma coisa no banco */
 SELECT NOW();
 SELECT CURRENT_USER();
+
+DELIMITER ~
+
+CREATE TRIGGER audit_prod
+AFTER UPDATE ON produto FOR EACH ROW
+BEGIN
+
+	INSERT INTO backup.bkp_produto VALUES(NULL, OLD.idproduto, OLD.nome, OLD.valor, NEW.valor,
+	NOW(), CURRENT_USER(), 'U');
+
+
+END
+~
+
+
+DELIMITER ;
+
+
+-- Alterando 0 valor do livro
+UPDATE produto SET VALOR = 110.00 WHERE idproduto = 3;
+
+-- Visualizando o backup do produto 
+
+SELECT * FROM backup.bkp_produto;
+
+/*
++-------+-----------+----------------------+----------------+----------------+---------------------+----------------+--------+
+| idbkp | idproduto | nome                 | valor_original | valor_alterado | data                | usuario        | evento |
++-------+-----------+----------------------+----------------+----------------+---------------------+----------------+--------+
+|     1 |         3 | LIVRO SQL PARA DADOS |         180.00 |         110.00 | 2023-01-25 16:30:03 | root@localhost | U      |
++-------+-----------+----------------------+----------------+----------------+---------------------+----------------+--------+
+1 row in set (0.00 sec)
+
+*/
