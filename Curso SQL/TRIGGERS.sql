@@ -234,6 +234,40 @@ FROM CURSOS C LEFT JOIN CURSOS P
 
 
 
-/* CURSORES * /
+-- Cursores
+
+
+CREATE DATABASE cursores;
+USE cursores;
+CREATE TABLE Vendedores(
+	idvendedores int primary key auto_increment,
+	nome varchar(30),
+	JAN INT,
+	FEV INT,
+	MAR INT
+	
+);
+
+
+INSERT INTO vendedores VALUES (null, 'Matheus', 2533, 5244, 8596);
+INSERT INTO vendedores VALUES (null, 'Gabriella', 12533, 54244, 82596);
+INSERT INTO vendedores VALUES (null, 'Fernando', 12533, 15244, 328596);
+INSERT INTO vendedores VALUES (null, 'Pedro', 12533, 15244, 18596);
+
+
+SELECT NOME, (JAN+FEV+MAR) AS TOTAL FROM VENDEDORES;
+
+/*
++-----------+--------+
+| NOME      | TOTAL  |
++-----------+--------+
+| Matheus   |  16373 |
+| Gabriella | 149373 |
+| Fernando  | 356373 |
+| Pedro     |  46373 |
++-----------+--------+
+4 rows in set (0.00 sec)
+
+*/
 
 
