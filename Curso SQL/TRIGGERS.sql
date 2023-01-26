@@ -239,13 +239,16 @@ FROM CURSOS C LEFT JOIN CURSOS P
 
 CREATE DATABASE cursores;
 USE cursores;
+
+DROP TABLE Vendedores;
 CREATE TABLE Vendedores(
 	idvendedores int primary key auto_increment,
 	nome varchar(30),
 	JAN INT,
 	FEV INT,
-	MAR INT
-	
+	MAR INT,
+	Total INT,
+	Media INT
 );
 
 
