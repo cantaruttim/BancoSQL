@@ -243,7 +243,7 @@ USE cursores;
 DROP TABLE Vendedores;
 CREATE TABLE Vendedores(
 	idvendedores int primary key auto_increment,
-	nome varchar(30),
+	nome varchar(50),
 	JAN INT,
 	FEV INT,
 	MAR INT
@@ -326,3 +326,5 @@ END
 DELIMITER ;
 
 CALL INSEREDADOS();
+
+O Curso Completo de Banco de Dados e SQL sem mistérios!
