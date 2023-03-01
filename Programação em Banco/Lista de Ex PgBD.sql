@@ -4,7 +4,6 @@
 
 DO
 $$
-
 DECLARE
 	-- declarando um valor inteiro (Números inteiros: [1, 100])
 	n1 INTEGER;
@@ -20,7 +19,6 @@ $$
 
 DO
 $$
-
 DECLARE
 	n2 NUMERIC (5,2);
 	li INTEGER := 1;
@@ -31,6 +29,7 @@ BEGIN
 END;
 $$
 
+
 /* 3. Faça um programa que gere um valor real no intervalo [20, 30] 
 -- que representa uma temperatura em graus.
 -- Faça a conversão para Fahrenheit e exiba (F = C x 1,8 + 32). 
@@ -38,6 +37,7 @@ $$
 
 -- Duas partes para a realização do programa. 1 a geração do número randômico
 -- 2. Converter a temperatura de celsius para Fahrenheit.
+
 
 DO
 $$
@@ -63,18 +63,15 @@ mostre o valor de delta: aquele que calculamos para chegar às potenciais
 raízes de uma equação do segundo (/\ = b² - 4.a.c) */
 
 
--- CORRIGIR 
-
 DO 
 $$
-
 DECLARE
 	-- variáveis para o cálculo do delta
-	a NUMERIC (5,2);
-	b NUMERIC (5,2);
-	c NUMERIC (5,2);
+	a NUMERIC (20,2);
+	b NUMERIC (20,2);
+	c NUMERIC (20,2);
 	
-	delta NUMERIC (5,2);
+	delta NUMERIC (20,2);
 	
 	-- determinando o range dos números
 	li INTEGER := 20;
@@ -85,10 +82,10 @@ BEGIN
 	a := FLOOR(li + random() * (ls - li + 1));
 	b := FLOOR(li + random() * (ls - li + 1));
 	c := FLOOR(li + random() * (ls - li + 1));
+	RAISE NOTICE 'Os valores de a, b e c são respectivamente %, % e %: ', a,b,c;
 	
-	delta := b ^ 2 -4 * a * c;
-	RAISE NOTICE '% ^ % (% * % * %) = %', b^2, -4*a*c, delta;
-	
+ 	delta := b ^ 2 -4 * a * c;
+	RAISE NOTICE 'O valor de delta é: %', delta;	
 END;
 $$
 
@@ -96,21 +93,24 @@ $$
 /* 5. Faça um programa que gere um número inteiro e 
 mostre a raiz cúbica de seu antecessor e a raiz quadrada de seu sucessor.*/
 
-
 DO
 $$
-
 DECLARE
 	n INTEGER;
+	nS INTEGER;
+	nA INTEGER;
 	
 	li INTEGER := 1;
 	ls INTEGER := 100;
 BEGIN
 	-- gerar o número dentro do intervalo
 	n := FLOOR(li + random() * (ls - li + 1));
+	nS := n + 1; -- sucessor
+	nA := n - 1; -- antecessor
 	
-	RAISE NOTICE 'Sucessor: % + % = %', n, n + 1, |/ n;
-	RAISE NOTICE 'Antecessor: % - % = %', n, n - 1, ||/ n;
+	RAISE NOTICE 'Número gerado %', n;
+	RAISE NOTICE 'Raíz quadrade de % é %', nS, to_char(|/nS, '99.999');
+	RAISE NOTICE 'Raíz Cúbica de % é %', nA, to_char(||/nA, '99.999');
 END;
 $$
 
@@ -121,13 +121,12 @@ metro. O programa deve exibir o valor total do terreno. */
 
 DO
 $$
-
 DECLARE
 	-- variáveis do retângulo
 	comp NUMERIC (60,2);
 	alt NUMERIC (60,2);
 	area NUMERIC (60,2);
-	metragem NUMERIC (60,2); -- vai ser o valor que é baseado nos limites
+	metragem NUMERIC (60,2);
 	total_terreno NUMERIC (60,2);
 	
 	preco NUMERIC(60,2);
@@ -144,11 +143,11 @@ BEGIN
 	comp := li_terreno + random() * (ls_terreno - li_terreno + 1);
 	alt := li_terreno + random() * (ls_terreno - li_terreno + 1);
 	area = comp * alt;
-	RAISE NOTICE 'A área do terreno é: %', area;
+	RAISE NOTICE 'Medidas : Comprimento : % m e Altura : % m. Com área de % m²', comp, alt, area;
 	
 	-- valor da metragem (representa o preço do terreno por metro)
 	metragem := li + random() * (ls - li +1);
-	RAISE NOTICE 'O valor da metragem do terreno é de: %', metragem;
+	RAISE NOTICE 'O valor do metro do terreno é de: R$ %', to_char(metragem, '99.99');
 	
 	-- mostrando o valor total do terreno (metro por area)
 	preco := metragem * area;
@@ -181,8 +180,8 @@ BEGIN
 	ano_nascimento := FLOOR(ano_nasc_liI + random() * (ano_nasc_liS - ano_nasc_liI + 1));
 	ano_atual := FLOOR(ano_atual_liI + random() * (ano_atual_liS - ano_atual_liI + 1));
 	RAISE NOTICE 'O ano de nascimento é % e o ano atual é %', ano_nascimento, ano_atual;
-	-- exibindo a idade em anos
 	
+	-- exibindo a idade em anos
 	idade := ano_atual - ano_nascimento;
 	RAISE NOTICE 'A idade é: % anos', idade;
 END;
