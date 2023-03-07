@@ -17,13 +17,14 @@ def existe(usuario):
         user='postgres'
     ) as conexao:
         with conexao.cursor() as cursor:
-            cursor.execute('SELECT * FROM tb_usuario WHERE login=%s AND senha=%s', (f'{usuario.login}',
-            f'{usuario.senha}'))
+            cursor.execute('SELECT * FROM tb_usuario WHERE login=%s AND senha=%s', 
+            (f'{usuario.login}', f'{usuario.senha}'))
 
             result = cursor.fetchone()
 
     return result != None
 
+# print(existe(Usuario('matheus', 'admin')))
         
 #definição da função menu
 def menu():
