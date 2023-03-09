@@ -25,58 +25,55 @@ def existe(usuario):
 
 # definição da função menu
 
-
-
 def menu():
-    texto = "0-Fechar Sistema\n1-Login\n2-Logoff\n"
-    # usuário ainda não existe
+    texto = "0-Fechar Sistema\n1-Login\n2-Logoff\n3-Cadastrar Usuário\n"
     usuario = None
-    # capturamos a opção do usuário
     op = int(input(texto))
 
     while op != 0:
-
         if op == 1:
+
             login = input("Digite seu login\n")
             senha = input("Digite sua senha\n")
             usuario = Usuario(login, senha)
-
-            # cadastra um novo usuário no banco (está repetindo o valor)
-            if op == 3:
-
-                if not existe(usuario):
-                    usuario = None
-
-                    # conectando ao banco
-                    # Abrindo um cursos
-                    conn = psycopg2.connect("dbname=Aulas user=postgres password=123456")
-                    cur = conn.cursor()
-                    cur.execute("INSERT INTO tb_usuario (login, senha) VALUES (%s, %s)",
-                                (f'{login}', f'{senha}'))
-
-                    # faz um commit no banco
-                    conn.commit()
-
-                    # Fechando a comunicação
-                    cur.close()
-                    conn.close()
-
-                    return print('Usuário cadastrado com sucesso')
-
-            return print('Usuário já existe no banco')
+            print("Usuário OK!!!" if existe(usuario) else "Usuário OK!!!")
 
 
-        # se ele digitar 2, configuramos o usuario como "None" novamente
         elif op == 2:
+
             usuario = None
             print("Logoff realizado com sucesso")
 
-            op = int(input(texto))
+        elif op == 3:
+
+            login_cadastro = input("Digite o login a ser cadastrado\n")
+            senha_cadastro = input("Digite a senha a ser cadastrada\n")
+            usuario = Usuario(login_cadastro, senha_cadastro)
+
+            #print("O usuario está sendo cadastrado")
+
+
+            # Vamos estabelecer a conexão com o banco
+
+            conn = psycopg2.connect("dbname=Aulas user=postgres password=123456")
+
+            cur = conn.cursor()
+            cur.execute("INSERT INTO tb_usuario (login, senha) VALUES (%s, %s) ",
+                        (f'{login_cadastro}', f'{senha_cadastro}'))
+
+            # fazendo um commit no banco
+
+            conn.commit()
+
+            cur.close()
+            conn.close()
+
+            print("Usuário cadastrado com sucesso" if existe(usuario) else "Usuário OK") #checando se o cadastro deu certo
+
+        op = int(input(texto))
 
     else:
-        # se digitar zero, dizemos adeus. Observe que esse else está associado ao while
+
         print("Até mais")
 
-
-# chamamos a função menu
 menu()
