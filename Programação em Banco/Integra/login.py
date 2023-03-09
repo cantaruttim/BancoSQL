@@ -42,24 +42,28 @@ def menu():
             usuario = Usuario(login, senha)
 
             # cadastra um novo usuário no banco (está repetindo o valor)
-            if not existe(usuario):
-                usuario = None
+            if op == 3:
 
-                # conectando ao banco
-                conn = psycopg2.connect("dbname=Aulas user=postgres password=123456")
-                # Abrindo um cursos
-                cur = conn.cursor()
-                cur.execute("INSERT INTO tb_usuario (login, senha) VALUES (%s, %s)",
-                            (f'{login}', f'{senha}'))
+                if not existe(usuario):
+                    usuario = None
 
-                # faz um commit no banco
-                conn.commit()
+                    # conectando ao banco
+                    # Abrindo um cursos
+                    conn = psycopg2.connect("dbname=Aulas user=postgres password=123456")
+                    cur = conn.cursor()
+                    cur.execute("INSERT INTO tb_usuario (login, senha) VALUES (%s, %s)",
+                                (f'{login}', f'{senha}'))
 
-                # Fechando a comunicação
-                cur.close()
-                conn.close()
+                    # faz um commit no banco
+                    conn.commit()
 
-            return print('Usuário cadastrado com sucesso')
+                    # Fechando a comunicação
+                    cur.close()
+                    conn.close()
+
+                    return print('Usuário cadastrado com sucesso')
+
+            return print('Usuário já existe no banco')
 
 
         # se ele digitar 2, configuramos o usuario como "None" novamente
