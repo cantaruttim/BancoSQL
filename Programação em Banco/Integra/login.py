@@ -46,37 +46,31 @@ def menu():
 
         elif op == 3:
 
-            if not existe(usuario):
+            login_cadastro = input("Digite o login a ser cadastrado\n")
+            senha_cadastro = input("Digite a senha a ser cadastrada\n")
+            usuario_cadastro = Usuario(login_cadastro, senha_cadastro)
 
+            # Vamos estabelecer a conexão com o banco
+            conn = psycopg2.connect("dbname=Aulas user=postgres password=123456")
 
-                login_cadastro = input("Digite o login a ser cadastrado\n")
-                senha_cadastro = input("Digite a senha a ser cadastrada\n")
-                usuario = Usuario(login_cadastro, senha_cadastro)
+            cur = conn.cursor()
 
-                #print("O usuario está sendo cadastrado")
-
-
-                # Vamos estabelecer a conexão com o banco
-
-                conn = psycopg2.connect("dbname=Aulas user=postgres password=123456")
-
-                cur = conn.cursor()
+            if not existe(usuario_cadastro):
                 cur.execute("INSERT INTO tb_usuario (login, senha) VALUES (%s, %s) ",
                             (f'{login_cadastro}', f'{senha_cadastro}'))
-    
+
                 # fazendo um commit no banco
-
                 conn.commit()
+                
+            print('Usuário já existe')
+            cur.close()
+            conn.close()
 
-                cur.close()
-                conn.close()
-
-                print("Usuário cadastrado com sucesso" if existe(usuario) else "Usuário OK") #checando se o cadastro deu certo
+            print("Usuário cadastrado com sucesso" if existe(usuario) else "Usuário OK") #checando se o cadastro deu certo
 
         op = int(input(texto))
 
     else:
-
         print("Até mais")
 
 menu()
