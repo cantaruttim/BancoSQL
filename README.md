@@ -3,7 +3,7 @@
 Neste repositório registro os meus estudos de banco de dados. Desde as queries básicas quanto as queries mais avançadas.
 Registro também as minhas aulas.
 
-Inicialmente você pode encontrar algumas anotações sobre meus estudos em SQL (utilizando o `MySQL`). Isso me deu a base para eu poder entrar em assuntos mais avançados como as linguagens específicas de cada SGBD. Por exemplo:
+Inicialmente você pode encontrar algumas anotações sobre meus estudos em SQL (utilizando o `MySQL` e o `Postgres`). Isso me deu a base para eu poder entrar em assuntos mais avançados como as linguagens específicas de cada SGBD. Por exemplo:
 
 Nome da Implementação | Fabricante | SGBD|
 ---------------------|------------|------|
