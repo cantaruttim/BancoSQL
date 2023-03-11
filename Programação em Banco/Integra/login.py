@@ -3,7 +3,6 @@ import psycopg2
 from usuario import Usuario
 #  print(psycopg)
 
-
 # verificando se o usuário existe
 def existe(usuario):
     with psycopg.connect(
@@ -35,7 +34,6 @@ def menu():
             senha = input("Digite sua senha\n")
             usuario = Usuario(login, senha)
             print("Usuário OK!!!" if existe(usuario) else "Usuário OK!!!")
-
 
         elif op == 2:
 
