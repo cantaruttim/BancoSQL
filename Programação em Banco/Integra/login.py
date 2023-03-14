@@ -60,9 +60,9 @@ def menu():
                 conn.commit()
                 print('Usuário cadastrado com sucesso')
 
-        #fechando a conexão
-        cur.close()
-        conn.close()
+            #fechando a conexão
+            cur.close()
+            conn.close()
 
         op = int(input(texto))
 
