@@ -33,7 +33,7 @@ def menu():
             login = input("Digite seu login\n")
             senha = input("Digite sua senha\n")
             usuario = Usuario(login, senha)
-            print("Usuário OK!!!" if existe(usuario) else "Usuário OK!!!")
+            print("Usuário já existe. Usuário OK!!!" if existe(usuario) else "Usuário NOK!!!")
 
         elif op == 2:
 
