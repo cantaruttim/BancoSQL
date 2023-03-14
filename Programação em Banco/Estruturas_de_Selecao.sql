@@ -1,24 +1,66 @@
-/* Operadores Lógicos (14/03)
--- AND OR NOT */
+/* Dados valores a,b e c desempenhando o papel de coeficientes 
+de uma potencial equação do segundo grau, calcule as potenciais raízes. 
+Considere que qualquer um dos coeficientes pode ser igual a zero */
 
-SELECT 2 > 3 AS "Teste Lógico";
-SELECT 2 < 3 AS "Teste Lógico";
-SELECT 3 = 3 AS "Teste Lógico";
-SELECT 1 <= 2 AS "Teste Lógico";
-SELECT 1 >= 2 AS "Teste Lógico";
-SELECT 1 <> 2 AS "Teste Lógico";
+DO
+$$
+DECLARE
+	a INT := valor_aleatorio_entre(1,10);
+	b INT := valor_aleatorio_entre(1,10);
+	c INT := valor_aleatorio_entre(1,10);
+	
+	delta INTEGER;
+	raizUm INTEGER;
+	raizDois INTEGER;
+BEGIN
+	RAISE NOTICE 'Os valores de a, b e c são: %, % e %, respectivamente', a,b,c;
 
-SELECT 2 BETWEEN 1 AND 3 AS "INTERVALO";
-SELECT 2 BETWEEN SYMMETRIC 3 AND 1 AS "INTERVALO"; -- Igual a 1 à 3 
-SELECT 2 IS DISTINCT FROM NULL; -- Valores diferentes de "desconhecido"
-SELECT 2 ISNULL;
-SELECT 2 NOTNULL;
+END;
+$$
 
--- Estruturas de De Seleção
+--------------------------------------------------------------------- 
 
+/* Dado um número inteiro, exiba se ele é par ou ímpar */
 
+DO
+$$
+DECLARE
+	valor INT := valor_aleatorio_entre(1,100);
+BEGIN
+	RAISE NOTICE 'O valor gerado é o %', valor;
+	IF valor % 2 = 0 THEN
+		RAISE NOTICE 'Esse número é par';
+	ELSE
+		RAISE NOTICE 'Esse número é ímpar';
+	END IF;
+END;
+$$
 
+/*  Dado um número inteiro, exiba metade de seu valor caso seja maior que 20 */
 
+DO
+$$
+DECLARE
+	valor INT;
+BEGIN
+	valor := valor_aleatorio_entre(1,100);
+	RAISE NOTICE 'O valor gerado é o %', valor;
+	
+	IF valor <= 20 THEN
+		RAISE NOTICE 'A metade do valor % é de %', valor, valor/2::FLOAT;
+	END IF;
+END;
+$$
 
+------------------------------------------------------
 
+SELECT valor_aleatorio_entre (2,10);
 
+CREATE OR REPLACE FUNCTION valor_aleatorio_entre (
+	lim_inferior INT, lim_superior INT
+) RETURNS INT AS
+$$
+BEGIN
+	RETURN FLOOR(RANDOM() * (lim_superior - lim_inferior + 1) + lim_inferior)::INT;
+END;
+$$ LANGUAGE plpgsql;
