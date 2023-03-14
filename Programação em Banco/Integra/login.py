@@ -1,6 +1,7 @@
 import psycopg
 import psycopg2
 from usuario import Usuario
+
 #  print(psycopg)
 
 # verificando se o usuário existe
