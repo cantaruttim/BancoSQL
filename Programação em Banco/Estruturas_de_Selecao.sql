@@ -9,11 +9,12 @@ DECLARE
 	b INT := valor_aleatorio_entre(1,10);
 	c INT := valor_aleatorio_entre(1,10);
 	
-	delta INTEGER;
-	raizUm INTEGER;
-	raizDois INTEGER;
+	delta NUMERIC(10,2);
+	raizUm NUMERIC(10,2);
+	raizDois NUMERIC(10,2);
 BEGIN
 	RAISE NOTICE 'Os valores de a, b e c são: %, % e %, respectivamente', a,b,c;
+	RAISE NOTICE 'Com a Equação da reta : %x% + %x + % = 0', a, U&'\00B2', b, c;
 
 END;
 $$
