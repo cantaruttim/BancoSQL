@@ -94,6 +94,33 @@ BEGIN
 	
 END; $$
 
+/* 4. Um comerciante comprou um produto e quer vendê-lo com um lucro de 45%
+se o valor da compra for menor que R$ 20. Caso contrário, ele deseja lucro de 30%. Faça
+um programa que, dado o valor do produto, calcula o valor da venda */
+
+DO $$
+DECLARE
+	produto INTEGER := valor_aleatorio_entre(0,100);
+	lucro_primario NUMERIC (5,2) := 0.45;
+	lucro_secundario NUMERIC (5,2) := 0.30;
+	
+	venda NUMERIC (5,2);
+BEGIN
+
+	IF produto < 20 THEN
+		venda = produto * (1 + lucro_primario);
+		RAISE NOTICE 'O preço do produto é R$ %. O valor da venda com ajuste  R$ é %', produto, venda;
+	
+	ELSE  
+		venda = produto * (1 + lucro_secundario);
+		RAISE NOTICE 'O preço do produto é R$ %. O valor da venda com ajuste R$ é %', produto, venda;
+	
+	END IF;
+
+END; $$
+
+
+-- SELECT (1 - 0.99);
 
 
 
