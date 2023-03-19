@@ -22,6 +22,34 @@ BEGIN
 	END IF;
 END; $$
 
+
+-- Usando o CASE
+
+DO $$
+DECLARE
+	n INTEGER := valor_aleatorio_entre(0,5);
+	m INTEGER := valor_aleatorio_entre(0,5);
+	k INTEGER;
+	
+	valor INTEGER;
+	mensagem VARCHAR(200);
+BEGIN
+	RAISE NOTICE 'Os valores de m e n gerados são: % e % ', m, n;
+	k := m * n;
+	RAISE NOTICE 'A multiplicação entre % e % é = %', m, n, k;
+	
+	valor := k / m;
+		
+	CASE valor 
+		WHEN 3 THEN
+			mensagem := 'Multiplo de 3';
+		
+		ELSE 
+			mensagem := 'Não é multiplo de 3';
+	END CASE;
+		RAISE NOTICE '%', mensagem;
+END; $$
+
 -- 2. Faça um programa que exibe se um número inteiro é multiplo de 3 ou de 5.
 
 DO $$
@@ -118,10 +146,6 @@ BEGIN
 	END IF;
 
 END; $$
-
-
--- SELECT (1 - 0.99);
-
 
 
 ------------------------------------------------------------
