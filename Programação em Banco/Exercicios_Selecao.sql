@@ -24,7 +24,6 @@ END; $$
 
 
 -- Usando o CASE
-
 DO $$
 DECLARE
 	n INTEGER := valor_aleatorio_entre(0,5);
@@ -73,7 +72,6 @@ BEGIN
 END; $$
 
 -- Usando o CASE
-
 DO $$
 DECLARE
 	n INTEGER := valor_aleatorio_entre(0,5);
@@ -99,15 +97,42 @@ BEGIN
 		RAISE NOTICE '%', mensagem;
 END; $$
 
-
-
 /* 3. Faça um programa que opere de acordo com o seguinte menu
 	1 - Soma 2 - Subtração 3 - Multiplicação 4 - Divisão */
 
+DO $$
+DECLARE
+	n1 INT := valor_aleatorio_entre (1,5);
+	n2 INT := valor_aleatorio_entre (1,5);
+	
+	valor INT := valor_aleatorio_entre (1,4);
+	res_soma INT;
+	res_subtracao INT;
+	res_divisao INT;
+	res_multiplicacao INT;
+BEGIN
+	IF valor <> 0 THEN
+		IF valor = 1 THEN
+			res_soma := n1 + n2;
+			RAISE NOTICE 'Opção Soma: % e %, Resultado = %', n1, n2, res_soma;
+		ELSEIF valor = 2 THEN
+			res_subtracao := n1 - n2;
+			RAISE NOTICE 'Opção Subtração :  % e %, Resultado = %', n1, n2, res_subtracao;
+		ELSEIF valor = 3 THEN
+			res_divisao := n1 / n2;
+			RAISE NOTICE 'Opção Divisão :  % e %, Resultado = %', n1, n2, res_divisao;
+		ELSEIF valor = 4 THEN
+			res_multiplicacao := n1 * n2;
+			RAISE NOTICE 'Opção Multiplicação :  % e %, Resultado = %', n1, n2, res_multiplicacao;
+		ELSE
+			RAISE NOTICE 'Valor fora das Opções de Menu';
+		END IF;
+	END IF;
+
+END; $$
 
 
 -- Usando o CASE
-
 DO $$
 DECLARE 
 	n1 INT := valor_aleatorio_entre (1,5);
@@ -174,13 +199,11 @@ BEGIN
 	ELSE  
 		venda = produto * (1 + lucro_secundario);
 		RAISE NOTICE 'O preço do produto é R$ %. O valor da venda com ajuste R$ é %', produto, venda;
-	
 	END IF;
-
+	
 END; $$
 
 -- Usando o CASE
-
 DO $$
 DECLARE
 	produto INTEGER := valor_aleatorio_entre(0,100);
@@ -198,8 +221,6 @@ BEGIN
 			venda := produto * (1 + lucro_secundario);
 			RAISE NOTICE 'O valor da venda será de R$ %', venda;
 	END CASE;
-	
-
 END; $$
 
 
