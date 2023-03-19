@@ -198,7 +198,7 @@ BEGIN
 	
 	ELSE  
 		venda = produto * (1 + lucro_secundario);
-		RAISE NOTICE 'O preço do produto é R$ %. O valor da venda com ajuste R$ é %', produto, venda;
+		RAISE NOTICE 'O preço do produto é R$ %. O valor da venda com ajuste R$ é %',  produto, venda;
 	END IF;
 	
 END; $$
