@@ -72,9 +72,41 @@ BEGIN
 	END IF;
 END; $$
 
+-- Usando o CASE
+
+DO $$
+DECLARE
+	n INTEGER := valor_aleatorio_entre(0,5);
+	m INTEGER := valor_aleatorio_entre(0,5);
+	k INTEGER;
+	
+	valor INTEGER;
+	mensagem VARCHAR(200);
+BEGIN
+	RAISE NOTICE 'Os valores de m e n gerados são: % e % ', m, n;
+	k := m * n;
+	RAISE NOTICE 'A multiplicação entre % e % é = %', m, n, k;
+	
+	valor := k / m;
+		
+	CASE valor 
+		WHEN 3 THEN
+			mensagem := 'Multiplo de 3 ou de 5';
+		
+		ELSE 
+			mensagem := 'Não é multiplo de 3 ou de 5';
+	END CASE;
+		RAISE NOTICE '%', mensagem;
+END; $$
+
+
 
 /* 3. Faça um programa que opere de acordo com o seguinte menu
 	1 - Soma 2 - Subtração 3 - Multiplicação 4 - Divisão */
+
+
+
+-- Usando o CASE
 
 DO $$
 DECLARE 
@@ -144,6 +176,29 @@ BEGIN
 		RAISE NOTICE 'O preço do produto é R$ %. O valor da venda com ajuste R$ é %', produto, venda;
 	
 	END IF;
+
+END; $$
+
+-- Usando o CASE
+
+DO $$
+DECLARE
+	produto INTEGER := valor_aleatorio_entre(0,100);
+	lucro_primario NUMERIC (5,2) := 0.45;
+	lucro_secundario NUMERIC (5,2) := 0.30;
+	
+	venda NUMERIC (5,2);
+BEGIN
+
+	CASE produto
+		WHEN 20 THEN
+			venda := produto * (1 + lucro_primario);
+			RAISE NOTICE 'O valor da venda será de R$ %', venda;
+		ELSE 
+			venda := produto * (1 + lucro_secundario);
+			RAISE NOTICE 'O valor da venda será de R$ %', venda;
+	END CASE;
+	
 
 END; $$
 
