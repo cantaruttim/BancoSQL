@@ -238,8 +238,7 @@ Print 3 messages followed by the corresponding numbers (see example) informing t
 
 Novo salario:  means "New Salary"
 Reajuste ganho: means "Money earned"
-Em percentual: means "In percentage"
-*/ 
+Em percentual: means "In percentage" 						*/ 
 
 
 DO $$
@@ -288,6 +287,54 @@ BEGIN
 	END IF;
 	
 
+END; $$
+
+
+-- Usando o CASE
+DO $$
+DECLARE
+	salario NUMERIC (10,2) := valor_aleatorio_entre(0,3500);
+	novo_salario NUMERIC (10,2);
+	
+	reajuste_ganho NUMERIC(10,2);
+	percentual NUMERIC(10,2);
+-- 	mensagem VARCHAR(500);
+BEGIN
+	RAISE NOTICE 'O salário é de R$ %', salario;
+	
+	CASE salario
+		WHEN 2000 THEN
+			novo_salario := salario * (1 + 0.04);
+			reajuste_ganho := novo_salario - salario;
+			percentual := 0.04 * 100;
+			RAISE NOTICE 'O novo salário será de R$ %, com um reajuste de R$ %. Correspondendo um percentual de %', 
+			novo_salario, reajuste_ganho, percentual;
+		WHEN 1200.01 THEN
+			novo_salario := salario * (1 + 0.07);
+			reajuste_ganho := novo_salario - salario;
+			percentual := 0.07 * 100;
+			RAISE NOTICE 'O novo salário será de R$ %, com um reajuste de R$ %. Correspondendo um percentual de %', 
+			novo_salario, reajuste_ganho, percentual;
+		WHEN 800 THEN
+			novo_salario := salario * (1 + 0.10);
+			reajuste_ganho := novo_salario - salario;
+			percentual := 0.10 * 100;
+			RAISE NOTICE 'O novo salário será de R$ %, com um reajuste de R$ %. Correspondendo um percentual de %', 
+			novo_salario, reajuste_ganho, percentual;
+			
+		WHEN 400 THEN
+			novo_salario := salario * (1 + 0.12);
+			reajuste_ganho := novo_salario - salario;
+			percentual := 0.12 * 100;
+			RAISE NOTICE 'O novo salário será de R$ %, com um reajuste de R$ %. Correspondendo um percentual de %', 
+			novo_salario, reajuste_ganho, percentual;
+		ELSE 
+			novo_salario := salario * (1 + 0.15);
+			reajuste_ganho := novo_salario - salario;
+			percentual := 0.15 * 100;
+			RAISE NOTICE 'O novo salário será de R$ %, com um reajuste de R$ %. Correspondendo um percentual de %', 
+			novo_salario, reajuste_ganho, percentual;
+	END CASE;
 END; $$
 
 
