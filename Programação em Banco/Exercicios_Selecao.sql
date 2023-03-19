@@ -46,35 +46,57 @@ END; $$
 
 
 /* 3. Faça um programa que opere de acordo com o seguinte menu
-	1 - Soma
-	2 - Subtração
-	3 - Multiplicação
-	4 - Divisão
-*/
+	1 - Soma 2 - Subtração 3 - Multiplicação 4 - Divisão */
 
 DO $$
 DECLARE 
 	n1 INT := valor_aleatorio_entre (1,5);
 	n2 INT := valor_aleatorio_entre (1,5);
-	res INT (4,2);
+	mensagem VARCHAR(30);
 	
-	-- menu
-	op_soma CHAR := '+';
-	op_subtracao CHAR := "-";
-	op_multiplicacao CHAR := "*";
-	op_divisao CHAR := "/";
+	-- menu % resultado
+	valor INT;
+	res_soma INT;
+	res_subtracao INT;
+	res_divisao INT;
+	res_multiplicacao INT;
 BEGIN
 	RAISE NOTICE 'Os valores de n1 e n2 são : % e %', n1, n2;
-
+	valor := valor_aleatorio_entre(1,4);
 	-- resultado deve ser apresentado como n1 op n2 = res
+	
+	CASE valor
+		WHEN 1 THEN
+			mensagem := 'Opção 1';
+			res_soma := n1 + n2;
+			RAISE NOTICE '%', res_soma;
+		WHEN 2 THEN
+			mensagem := 'Opção 2';
+			res_subtracao := n1 - n2;
+			RAISE NOTICE '%', res_subtracao;
+		WHEN 3 THEN
+			mensagem := 'Opção 3';
+			res_divisao := n1 / n2;
+			RAISE NOTICE '%', res_divisao;
+		WHEN 4 THEN
+			mensagem := 'Opção 4';
+			res_multiplicacao := n1 * n2;
+			RAISE NOTICE '%', res_multiplicacao;
+			
+		ELSE 
+			mensagem := 'Valor fora do intervalo';
+	END CASE;
+	RAISE NOTICE '% : %', mensagem, res_soma;
+	RAISE NOTICE '% : %', mensagem, res_subtracao;
+	RAISE NOTICE '% : %', mensagem, res_divisao;
+	RAISE NOTICE '% : %', mensagem, res_multiplicacao;
 
-
-
-
-
-
-
+	
 END; $$
+
+
+
+
 ------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION valor_aleatorio_entre (
