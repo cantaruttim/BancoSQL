@@ -224,6 +224,74 @@ BEGIN
 END; $$
 
 
+/* 5. The company ABC decided to give a salary increase to its employees, according to the following table:
+Salary					Readjustment Rate
+0 - 400.00						15%
+400.01 - 800.00					12%
+800.01 - 1200.00				10%
+1200.01 - 2000.00				7%
+Above 2000.00					4%
+
+Print 3 messages followed by the corresponding numbers (see example) informing the new salary, 
+- the among of money earned (both must be shown with 2 decimal places) 
+- the percentual obtained by the employee. Note:
+
+Novo salario:  means "New Salary"
+Reajuste ganho: means "Money earned"
+Em percentual: means "In percentage"
+*/ 
+
+
+DO $$
+DECLARE
+	salario NUMERIC (10,2) := valor_aleatorio_entre(0,3500);
+	novo_salario NUMERIC (10,2);
+	
+	reajuste_ganho NUMERIC(10,2);
+	percentual NUMERIC(10,2);
+BEGIN
+	RAISE NOTICE 'O salário é de R$ %', salario;
+	
+	IF salario > 2000 THEN
+		novo_salario := salario * (1 + 0.04);
+		reajuste_ganho := novo_salario - salario;
+		percentual := 0.04 * 100;
+		RAISE NOTICE 'O novo salário será de R$ %, com um reajuste de R$ %. Correspondendo um percentual de %', 
+		novo_salario, reajuste_ganho, percentual;
+	ELSE 
+		 IF salario BETWEEN 1200.01 AND 2000 THEN
+			novo_salario := salario * (1 + 0.07);
+			reajuste_ganho := novo_salario - salario;
+			percentual := 0.07 * 100;
+			RAISE NOTICE 'O novo salário será de R$ %, com um reajuste de R$ %. Correspondendo um percentual de %', 
+			novo_salario, reajuste_ganho, percentual;
+			
+		ELSEIF salario BETWEEN SYMMETRIC 1200 AND 800 THEN
+			novo_salario := salario * (1 + 0.10);
+			reajuste_ganho := novo_salario - salario;
+			percentual := 0.10 * 100;
+			RAISE NOTICE 'O novo salário será de R$ %, com um reajuste de R$ %. Correspondendo um percentual de %', 
+			novo_salario, reajuste_ganho, percentual;
+		ELSEIF salario BETWEEN 400 AND 800 THEN
+			novo_salario := salario * (1 + 0.12);
+			reajuste_ganho := novo_salario - salario;
+			percentual := 0.12 * 100;
+			RAISE NOTICE 'O novo salário será de R$ %, com um reajuste de R$ %. Correspondendo um percentual de %', 
+			novo_salario, reajuste_ganho, percentual;
+		ELSE 
+			novo_salario := salario * (1 + 0.15);
+			reajuste_ganho := novo_salario - salario;
+			percentual := 0.15 * 100;
+			RAISE NOTICE 'O novo salário será de R$ %, com um reajuste de R$ %. Correspondendo um percentual de %', 
+			novo_salario, reajuste_ganho, percentual;
+		END IF;
+	END IF;
+	
+
+END; $$
+
+
+
 ------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION valor_aleatorio_entre (
