@@ -56,7 +56,7 @@ DECLARE
 	i INT;
 BEGIN
 	i := 0;
-	<<externo>> -- rótulo exteno
+	<<externo>> -- rótulo externo
 	LOOP 
 		i := i + 1;
 		EXIT WHEN i > 10;
