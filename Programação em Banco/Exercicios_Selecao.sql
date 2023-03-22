@@ -12,9 +12,9 @@ BEGIN
 	k := m * n;
 	RAISE NOTICE 'A multiplicação entre % e % é = %', m, n, k;
 	
-	IF (k/m) <> 0 THEN
+	IF (k % m) <> 0 THEN
 		-- Se (k / m) = n dizemos que o valor é multiplo 
-		IF (k/m) = 3 THEN
+		IF (k % m) = 3 THEN
 			RAISE NOTICE 'Multiplo de 3';
 		ELSE
 			RAISE NOTICE 'Não é multiplo de 3';
@@ -37,7 +37,7 @@ BEGIN
 	k := m * n;
 	RAISE NOTICE 'A multiplicação entre % e % é = %', m, n, k;
 	
-	valor := k / m;
+	valor := k % m;
 		
 	CASE valor 
 		WHEN 3 THEN
@@ -61,9 +61,9 @@ BEGIN
 	k := m * n;
 	RAISE NOTICE 'A multiplicação entre % e % é = %', m, n, k;
 	
-	IF (k/m) <> 0 THEN
+	IF (k % m) <> 0 THEN
 		-- Se (k / m) = n dizemos que o valor é multiplo 
-		IF (k/m) = 3 OR (k/m) = 5 THEN
+		IF (k % m) = 3 OR (k % m) = 5 THEN
 			RAISE NOTICE 'Multiplo de 3 ou 5';
 		ELSE
 			RAISE NOTICE 'Não é multiplo de 3 ou de 5';
@@ -85,7 +85,7 @@ BEGIN
 	k := m * n;
 	RAISE NOTICE 'A multiplicação entre % e % é = %', m, n, k;
 	
-	valor := k / m;
+	valor := k % m;
 		
 	CASE valor 
 		WHEN 3 THEN
