@@ -8,10 +8,23 @@
 
 DO $$
 DECLARE
-	
-	
+	cur_nomes_e_inscritos CURSOR FOR 
+		SELECT youtuber, subscribers FROM tb_top_youtubers;
+	tupla RECORD;
+	resultado TEXT DEFAULT '';
 BEGIN
+
+	OPEN cur_nomes_e_inscritos;
 	
+	FETCH cur_nomes_e_inscritos INTO tupla;
+	WHILE FOUND LOOP
+		resultado := resultado || tupla.youtuber || ': ' || tupla.subscribers || E'\n';
+	
+		FETCH cur_nomes_e_inscritos INTO tupla;
+	END LOOP;
+
+	CLOSE cur_nomes_e_inscritos;
+	RAISE NOTICE '%', resultado;
 END ; $$
 
 
