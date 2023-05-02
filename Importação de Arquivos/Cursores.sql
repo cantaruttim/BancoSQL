@@ -3,6 +3,54 @@
    Acessamos os dados (fetch/move)
    Fechamos o cursos a partir do cliente. */
    
+   
+-- Concatenando nome e número de inscritos (Bound)
+
+DO $$
+DECLARE
+	
+	
+BEGIN
+	
+END ; $$
+
+
+-- Exibindo os nomes dos youtubers que começaram a partir de um ano específico
+DO $$
+DECLARE
+	-- 1. Declaração
+	cur_nomes_a_partir_de REFCURSOR;
+	v_youtuber VARCHAR(200);
+	v_ano INT := 2008;
+	v_nome_tabela VARCHAR(200) := 'tb_top_youtubers';
+BEGIN
+	-- 2. Abrindo o cursor
+	OPEN cur_nomes_a_partir_de FOR EXECUTE(
+		
+		format(
+			'
+				SELECT youtuber FROM %s 
+				WHERE started >= $1 
+			', 
+			v_nome_tabela
+		)
+		
+	) USING v_ano;
+	
+	LOOP
+		-- 3. Obtendo os dados de interesse
+		FETCH cur_nomes_a_partir_de INTO v_youtuber;
+		EXIT WHEN NOT FOUND;
+		RAISE NOTICE '%', v_youtuber;
+	END LOOP;
+	
+	-- 4. Fechando o cursor
+	CLOSE cur_nomes_a_partir_de;
+	
+END; $$
+
+
+
 DO $$
 DECLARE
 	-- 1. declaração do cursor (unbound, não vinculado). Ele foi declarado sem que um comando fosse associado a ele
@@ -27,10 +75,7 @@ BEGIN
 	CLOSE cur_nomes_youtubers;
 
 END; $$
-
-
-
-   
+ 
    
    
    
@@ -48,16 +93,3 @@ END; $$
 -- );
 
 -- SELECT * FROM tb_top_youtubers;
-
-
-
-
-
-
-
-
-
-
-
-
-
