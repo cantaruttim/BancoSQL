@@ -3,6 +3,36 @@
    Acessamos os dados (fetch/move)
    Fechamos o cursos a partir do cliente. */
    
+/* Escreva um cursor que exiba as variáveis rank e youtuber de toda tupla que tiver video_count 
+pelo menos igual a 1000 e cuja category seja igual a Sports ou Music. */
+-- MUSIC = 222 ; Sports = 10
+
+DO $$
+DECLARE
+	-- declarando o cursor
+	cur_rank_e_youtuber CURSOR FOR 
+		SELECT rank, youtuber , video_count FROM  tb_top_youtubers
+			WHERE video_count >= '1,000.00'
+				AND category LIKE '%Music' 
+				OR category LIKE '%Sports';
+	tupla RECORD;
+	resultado TEXT DEFAULT '';
+BEGIN
+
+	OPEN cur_rank_e_youtuber;
+	FETCH cur_rank_e_youtuber INTO tupla;
+	
+	WHILE FOUND LOOP
+		resultado := resultado || tupla.rank || ': ' || tupla.youtuber || ', ' || tupla.video_count || E'\n';
+		FETCH cur_rank_e_youtuber INTO tupla;
+	END LOOP;
+	
+	CLOSE cur_rank_e_youtuber;
+	RAISE NOTICE '%', resultado;
+
+END; $$
+
+   
    
 -- Concatenando nome e número de inscritos (Bound)
 
@@ -93,16 +123,25 @@ END; $$
    
    
 
--- DROP TABLE tb_top_youtubers;
--- CREATE TABLE tb_top_youtubers(
--- 	cod_top_youtubers SERIAL PRIMARY KEY,
--- 	rank INT,
--- 	youtuber VARCHAR(200),
--- 	subscribers VARCHAR(200),
--- 	video_views VARCHAR(200),
--- 	video_count VARCHAR(200),
--- 	category VARCHAR(200),
--- 	started INT
--- );
+DROP TABLE tb_top_youtubers;
+CREATE TABLE tb_top_youtubers(
+	cod_top_youtubers SERIAL PRIMARY KEY,
+	rank INT,
+	youtuber VARCHAR(200),
+	subscribers VARCHAR(200),
+	video_views VARCHAR(200),
+	video_count VARCHAR(200),
+	category VARCHAR(200),
+	started INT
+);
 
--- SELECT * FROM tb_top_youtubers;
+SELECT * FROM tb_top_youtubers;
+
+-- MUSIC = 222 ; Sports = 10
+SELECT category, COUNT(*) FROM tb_top_youtubers
+WHERE video_count > '1,000.00'
+GROUP BY category, tb_top_youtubers.category;
+
+SELECT rank AS Rank, youtuber AS Youtuber, video_count AS Visualizações FROM  tb_top_youtubers
+WHERE video_count >= '1,000.00'
+AND category LIKE '%Music' OR category LIKE '%Sports';
