@@ -3,6 +3,29 @@
    Acessamos os dados (fetch/move)
    Fechamos o cursos a partir do cliente. */
    
+/* Escreva um cursor que exibe todos os nomes dos youtubers em ordem reversa. */ 
+     
+DO $$
+DECLARE
+	cur_youtuber_reverso CURSOR FOR
+		SELECT youtuber FROM tb_top_youtubers
+			ORDER BY youtuber;
+	tupla RECORD;
+	resultado TEXT DEFAULT '';
+BEGIN
+	OPEN cur_youtuber_reverso;
+	FETCH ABSOLUTE 1000 FROM cur_youtuber_reverso INTO tupla; -- POSICIONANDO NA ÚLTIMA TUPLA
+
+	WHILE FOUND LOOP
+		resultado := resultado || tupla.youtuber || ' , ' || E'\n';
+		FETCH BACKWARD FROM cur_youtuber_reverso INTO tupla; -- PEGANDO O VALOR ANTERIOR
+
+	END LOOP;	
+	CLOSE cur_youtuber_reverso;
+	RAISE NOTICE '%', resultado;
+END; $$
+   
+   
 /* Escreva um cursor que exiba as variáveis rank e youtuber de toda tupla que tiver video_count 
 pelo menos igual a 1000 e cuja category seja igual a Sports ou Music. */
 -- MUSIC = 222 ; Sports = 10
