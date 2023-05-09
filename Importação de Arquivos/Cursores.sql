@@ -27,8 +27,16 @@ END; $$
    
    
 /* Ex: 1 - Escreva um cursor que exiba as variáveis rank e youtuber de toda tupla que tiver video_count 
-pelo menos igual a 1000 e cuja category seja igual a Sports ou Music. */
--- MUSIC = 222 ; Sports = 10
+pelo menos igual a 1000 e cuja category seja igual a Sports ou Music. 
+
+Para sabermos qual deve ser testado primeiro para não dar sobrecarga no banco, podemos utilizar o comando a seguir
+
+SELECT category, COUNT(*) FROM tb_top_youtubers
+WHERE video_count > 1000
+GROUP BY category, tb_top_youtubers.category; 
+-- MUSIC = 68 ; Sports = 6
+
+*/
 
 DO $$
 DECLARE
@@ -61,25 +69,24 @@ END; $$
 DO $$
 DECLARE
 	v_ano INT := 2010;
-	V_inscritos INT := 60_000_000;
+	V_inscritos INT := 60000000;
 	-- declarando o cursor (bound) com parâmetros.
-	cur_ano_inscritos CURSOR (ano INT, incritos INT) FOR
+	cur_ano_inscritos CURSOR (ano INT, inscritos INT) FOR
 		SELECT youtuber FROM tb_top_youtubers
 		WHERE started >= ano 
 			AND subscribers >= inscritos;
 	v_youtuber VARCHAR(200);
 BEGIN
-
 	-- abrir o cursor
-	OPEN cur_ano_inscritos();
-	
-	
-	
-	
-	
-	
+	OPEN cur_ano_inscritos(v_ano, v_inscritos);
+	LOOP
+		-- recuperando os dados
+		FETCH cur_ano_inscritos INTO v_youtuber;
+		EXIT WHEN NOT FOUND;
+		RAISE NOTICE '%', v_youtuber;
+	END LOOP;
+	-- fechando o cursor	
 	CLOSE cur_ano_inscritos;
-	
 END; $$
 
    
@@ -169,9 +176,6 @@ BEGIN
 
 END; $$
  
-   
-   
-   
 
 DROP TABLE tb_top_youtubers;
 CREATE TABLE tb_top_youtubers(
@@ -187,14 +191,20 @@ CREATE TABLE tb_top_youtubers(
 
 SELECT * FROM tb_top_youtubers;
 
--- MUSIC = 222 ; Sports = 10
+-- MUSIC = 68 ; Sports = 6
 SELECT category, COUNT(*) FROM tb_top_youtubers
-WHERE video_count > '1,000.00'
+WHERE video_count > 1000
 GROUP BY category, tb_top_youtubers.category;
 
 SELECT rank AS Rank, youtuber AS Youtuber, video_count AS Visualizações FROM  tb_top_youtubers
-WHERE video_count >= '1,000.00'
+WHERE video_count >= 1000
 AND category LIKE '%Music' OR category LIKE '%Sports';
+
+SELECT rank AS Rank, youtuber AS Youtuber, video_count AS Visualizações FROM  tb_top_youtubers
+WHERE video_count >= 2000000;
+
+SELECT rank , youtuber , video_count FROM tb_top_youtubers
+ORDER BY video_count DESC;
 
 -- Alterando o tipo dos dados para um tipo numérico
 UPDATE tb_top_youtubers SET subscribers = REPLACE(subscribers, ',', '');
