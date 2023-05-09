@@ -3,7 +3,7 @@
    Acessamos os dados (fetch/move)
    Fechamos o cursos a partir do cliente. */
    
-/* Escreva um cursor que exibe todos os nomes dos youtubers em ordem reversa. */ 
+/* Ex: 2 - Escreva um cursor que exibe todos os nomes dos youtubers em ordem reversa. */ 
      
 DO $$
 DECLARE
@@ -26,7 +26,7 @@ BEGIN
 END; $$
    
    
-/* Escreva um cursor que exiba as variáveis rank e youtuber de toda tupla que tiver video_count 
+/* Ex: 1 - Escreva um cursor que exiba as variáveis rank e youtuber de toda tupla que tiver video_count 
 pelo menos igual a 1000 e cuja category seja igual a Sports ou Music. */
 -- MUSIC = 222 ; Sports = 10
 
@@ -35,9 +35,9 @@ DECLARE
 	-- declarando o cursor
 	cur_rank_e_youtuber CURSOR FOR 
 		SELECT rank, youtuber , video_count FROM  tb_top_youtubers
-			WHERE video_count >= '1,000.00'
-				AND category LIKE '%Music' 
-				OR category LIKE '%Sports';
+			WHERE video_count >= 1000
+				AND (category LIKE '%Music' 
+				OR category LIKE '%Sports');
 	tupla RECORD;
 	resultado TEXT DEFAULT '';
 BEGIN
@@ -53,6 +53,33 @@ BEGIN
 	CLOSE cur_rank_e_youtuber;
 	RAISE NOTICE '%', resultado;
 
+END; $$
+
+
+/* parâmetros com nome e ela ordem */
+
+DO $$
+DECLARE
+	v_ano INT := 2010;
+	V_inscritos INT := 60_000_000;
+	-- declarando o cursor (bound) com parâmetros.
+	cur_ano_inscritos CURSOR (ano INT, incritos INT) FOR
+		SELECT youtuber FROM tb_top_youtubers
+		WHERE started >= ano 
+			AND subscribers >= inscritos;
+	v_youtuber VARCHAR(200);
+BEGIN
+
+	-- abrir o cursor
+	OPEN cur_ano_inscritos();
+	
+	
+	
+	
+	
+	
+	CLOSE cur_ano_inscritos;
+	
 END; $$
 
    
@@ -168,3 +195,13 @@ GROUP BY category, tb_top_youtubers.category;
 SELECT rank AS Rank, youtuber AS Youtuber, video_count AS Visualizações FROM  tb_top_youtubers
 WHERE video_count >= '1,000.00'
 AND category LIKE '%Music' OR category LIKE '%Sports';
+
+-- Alterando o tipo dos dados para um tipo numérico
+UPDATE tb_top_youtubers SET subscribers = REPLACE(subscribers, ',', '');
+ALTER TABLE tb_top_youtubers ALTER COLUMN subscribers TYPE INTEGER USING subscribers::INT;
+
+UPDATE tb_top_youtubers SET video_views = REPLACE(video_views, ',', '');
+ALTER TABLE tb_top_youtubers ALTER COLUMN video_views TYPE BIGINT USING video_views::BIGINT;
+
+UPDATE tb_top_youtubers SET video_count = REPLACE(video_count, ',', '');
+ALTER TABLE tb_top_youtubers ALTER COLUMN video_count TYPE INTEGER USING video_count::INT;
