@@ -56,7 +56,7 @@ BEGIN
 END; $$
 
 
-/* parâmetros com nome e ela ordem */
+/* parâmetros com nome e pela ordem */
 
 DO $$
 DECLARE
