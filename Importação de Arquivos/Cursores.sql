@@ -3,6 +3,9 @@
    Acessamos os dados (fetch/move)
    Fechamos o cursos a partir do cliente. */
    
+/* */    
+   
+   
 /* Ex: 2 - Escreva um cursor que exibe todos os nomes dos youtubers em ordem reversa. */ 
      
 DO $$
@@ -24,6 +27,32 @@ BEGIN
 	CLOSE cur_youtuber_reverso;
 	RAISE NOTICE '%', resultado;
 END; $$
+
+--- Exemplo 2 
+
+DO $$
+DECLARE
+	cur_youtuber_reverso REFCURSOR;
+	tupla RECORD;
+BEGIN
+	OPEN cur_youtuber_reverso SCROLL FOR
+		SELECT * FROM tb_top_youtubers;
+	
+	LOOP 
+		FETCH cur_youtuber_reverso INTO tupla;
+		EXIT WHEN NOT FOUND;
+	END LOOP;
+ 
+ 	LOOP
+		FETCH BACKWARD FROM cur_youtuber_reverso INTO tupla;
+		EXIT WHEN NOT FOUND; 
+		RAISE NOTICE '%', tupla.youtuber || E'\n';
+	END LOOP;
+
+	CLOSE cur_youtuber_reverso;	
+END; $$
+
+
    
    
 /* Ex: 1 - Escreva um cursor que exiba as variáveis rank e youtuber de toda tupla que tiver video_count 
@@ -64,7 +93,7 @@ BEGIN
 END; $$
 
 
-/* Remove todas as tuplas em que video-count é desconhecido e exiba as tuplas remancescentes na tabela, de baixo para cima */
+/* Remove todas as tuplas em que video_count é desconhecido e exiba as tuplas remancescentes na tabela, de baixo para cima */
 
 DO $$
 DECLARE
@@ -77,7 +106,7 @@ BEGIN
 		FETCH cur_delete INTO tupla;
 		EXIT WHEN NOT FOUND;
 		
-		IF tupla.video_count IS NULL THEN		
+		IF tupla.video_count IS NULL   THEN		
 			DELETE FROM tb_top_youtubers
 			WHERE CURRENT OF cur_delete;			
 		END IF;		
@@ -89,6 +118,7 @@ BEGIN
 		RAISE NOTICE '%', tupla || E'\n';	
 	END LOOP;
 	
+	CLOSE cur_delete;
 END; $$
 
 SELECT * FROM tb_top_youtubers
