@@ -64,6 +64,37 @@ BEGIN
 END; $$
 
 
+/* Remove todas as tuplas em que video-count é desconhecido e exiba as tuplas remancescentes na tabela, de baixo para cima */
+
+DO $$
+DECLARE
+	cur_delete REFCURSOR; -- unbounding
+	tupla RECORD;
+BEGIN
+	OPEN cur_delete SCROLL FOR 
+		SELECT * FROM tb_top_youtubers;
+	LOOP
+		FETCH cur_delete INTO tupla;
+		EXIT WHEN NOT FOUND;
+		
+		IF tupla.video_count IS NULL THEN		
+			DELETE FROM tb_top_youtubers
+			WHERE CURRENT OF cur_delete;			
+		END IF;		
+	END LOOP;
+	
+	LOOP
+		FETCH BACKWARD FROM cur_delete INTO tupla;
+		EXIT WHEN NOT FOUND;
+		RAISE NOTICE '%', tupla || E'\n';	
+	END LOOP;
+	
+END; $$
+
+SELECT * FROM tb_top_youtubers
+WHERE video_count IS NULL;
+-- sem registros
+
 /* parâmetros com nome e pela ordem */
 
 DO $$
