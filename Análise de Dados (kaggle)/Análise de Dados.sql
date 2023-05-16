@@ -10,6 +10,35 @@ CREATE TABLE student(
 	GRADE SMALLINT
 );
 
+
+
+
+
+--STORED PROCEDURES
+-- Seleciono e agrupo por faixa etária
+SELECT COUNT(age) FROM student
+GROUP BY age;
+
+SELECT COUNT(age) FROM student;
+
+-- PROCEDURE 
+DROP PROCEDURE sp_retorna_idade();
+CREATE OR REPLACE PROCEDURE sp_retorna_idade(OUT count_age SMALLINT)
+LANGUAGE plpgsql
+AS $$
+BEGIN 
+	SELECT age INTO count_age FROM student ;
+END; $$;
+
+-- FUNÇÃO ANÔNIMA
+DO $$
+DECLARE
+	count_age SMALLINT;
+BEGIN
+	SELECT COUNT(age) INTO count_age FROM student;
+	RAISE NOTICE 'Idade %', count_age;
+END; $$
+
 /* 
 
 COLLUMNS IMPORTED:
@@ -25,6 +54,19 @@ COLLUMNS IMPORTED:
 
 
 SELECT * FROM student;
+
+-- order by student by age
+SELECT age AS AGE
+FROM student 
+ORDER BY age DESC;
+
+-- conting the student by gender 
+SELECT gender, count(gender) FROM student
+GROUP BY gender;
+
+
+
+
 
 
 
