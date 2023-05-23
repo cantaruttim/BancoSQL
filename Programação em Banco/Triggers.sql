@@ -1,10 +1,23 @@
 -- TRIGGERS
 
+--Variávei especiais
+-- removendo dados da trigger
 
+DELETE FROM tb_teste_trigger;
+SELECT * FROM tb_teste_trigger;
 
+--visualizar detalhes do sequence usado na geração de valores para a tabela
+SELECT * FROM tb_teste_trigger_cod_teste_trigger_seq;
 
+ALTER SEQUENCE tb_teste_trigger_cod_teste_trigger_seq
+RESTART WITH 1;
 
+SELECT * FROM tb_teste_trigger_cod_teste_trigger_seq;
+-- iniciando com 1 novamente
 
+-- Removendo os dois triggers
+DROP TRIGGER IF EXISTS tg_antes_do_insert2 ON tb_teste_trigger;
+DROP TRIGGER IF EXISTS tg_depois_do_insert2 ON tb_teste_trigger;
 
 --- ... --- 
 
@@ -70,11 +83,3 @@ FOR EACH STATEMENT
 
 INSERT INTO tb_teste_trigger(texto) VALUES ('testando trigger ... ') ;
 SELECT * FROM tb_teste_trigger;
-
-
-
-
-
-
-
-
