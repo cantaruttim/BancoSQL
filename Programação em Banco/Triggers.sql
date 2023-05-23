@@ -19,6 +19,78 @@ SELECT * FROM tb_teste_trigger_cod_teste_trigger_seq;
 DROP TRIGGER IF EXISTS tg_antes_do_insert2 ON tb_teste_trigger;
 DROP TRIGGER IF EXISTS tg_depois_do_insert2 ON tb_teste_trigger;
 
+DROP TRIGGER IF EXISTS tg_antes_do_insert ON tb_teste_trigger;
+CREATE OR REPLACE FUNCTION fn_antes_de_um_insert() RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+	
+	RAISE NOTICE 'Estamos no trigger before';
+	RAISE NOTICE 'OLD: %', OLD;
+	RAISE NOTICE 'NEW: %', NEW;
+	RAISE NOTICE 'OLD.texto: %', OLD.texto;
+	RAISE NOTICE 'NEW.texto, %', NEW.texto;
+	RAISE NOTICE 'TG_NAME: %', TG_NAME;
+	RAISE NOTICE 'TG_LEVEL: %', TG_LEVEL;
+	RAISE NOTICE 'TG_WHEN: %', TG_WHEN;
+	RAISE NOTICE 'TG_TABLE_NAME: %', TG_TABLE_NAME;
+	RAISE NOTICE 'TG_NARGS: %', TG_NARGS;
+	
+	FOR i IN 0..TG_NARGS - 1 LOOP
+		RAISE NOTICE '%', TG_ARGV[i];
+	END LOOP;
+	
+	-- RETURN NULL;
+	RETURN NEW;
+	
+END ; $$
+
+-- criando o trigger (vínculo entre a trigger e a tabela)	
+CREATE OR REPLACE TRIGGER tg_antes_do_insert
+BEFORE INSERT OR UPDATE ON tb_teste_trigger
+FOR EACH STATEMENT 
+	EXECUTE PROCEDURE fn_antes_de_um_insert('Antes: V1', 'Antes: V2');
+
+
+
+
+
+
+DROP TRIGGER IF EXISTS tg_depois_de_um_insert ON tb_teste_trigger;
+CREATE OR REPLACE FUNCTION fn_depois_de_um_insert()
+RETURNS TRIGGER
+LANGUAGE plpgsql AS $$
+BEGIN
+
+	RAISE NOTICE 'Estamos no trigger after';
+	RAISE NOTICE 'OLD: %', OLD;
+	RAISE NOTICE 'NEW: %', NEW;
+	RAISE NOTICE 'OLD.texto: %', OLD.texto;
+	RAISE NOTICE 'NEW.texto, %', NEW.texto;
+	RAISE NOTICE 'TG_NAME: %', TG_NAME;
+	RAISE NOTICE 'TG_LEVEL: %', TG_LEVEL;
+	RAISE NOTICE 'TG_WHEN: %', TG_WHEN;
+	RAISE NOTICE 'TG_TABLE_NAME: %', TG_TABLE_NAME;
+	RAISE NOTICE 'TG_NARGS: %', TG_NARGS;
+	
+	FOR i IN 0..TG_NARGS - 1 LOOP
+		RAISE NOTICE '%', TG_ARGV[i];
+	END LOOP;
+	
+	-- RETURN NULL;
+	RETURN NEW;
+	
+END; $$
+
+CREATE OR REPLACE TRIGGER tg_depois_de_um_insert
+AFTER INSERT OR UPDATE ON tb_teste_trigger
+FOR STATEMENT 
+	EXECUTE FUNCTION fn_depois_de_um_insert('Depois: V1', 'Depois: V2', 'Depois: V3');
+
+
+UPDATE tb_teste_trigger SET texto = 'Novo Texto' WHERE cod_teste_trigger = 1;
+INSERT INTO tb_teste_trigger(texto) VALUES ('Um texto qualquer');
+
 --- ... --- 
 
 INSERT INTO tb_teste_trigger
