@@ -1,5 +1,56 @@
 -- TRIGGERS
 
+DROP TABLE IF EXISTS tb_pessoa;
+CREATE TABLE IF NOT EXISTS tb_pessoa(
+	cod_pessoa SERIAL PRIMARY KEY,
+	nome VARCHAR(200) NOT NULL,
+	idade INT NOT NULL,
+	saldo NUMERIC(10,2) NOT NULL
+);
+
+DROP TABLE IF EXISTS tb_auditoria;
+CREATE TABLE IF NOT EXISTS tb_auditoria(
+	cod_auditoria SERIAL PRIMARY KEY,
+	cod_pessoa INT NOT NULL,
+	idade INT NOT NULL,
+	saldo_antigo NUMERIC(10,2),
+	saldo_atual NUMERIC(10,2)
+);
+
+CREATE OR REPLACE FUNCTION fn_validador_de_saldo()
+RETURNS TRIGGER
+LANGUAGE plpgsql AS $$
+BEGIN
+
+	/*
+	SE O SALDO DO NEW FOR PWLO MENOS ZERO CONFIRMO APENAS (OU SEJA, DEVOLVO NEW)
+	SE NÃO, FACO UM RAISE E DEVOLVO NULL
+	*/
+	
+	IF NEW.saldo >= 0 THEN
+		RETURN NEW;
+	ELSE
+		RAISE NOTICE 'Valor de Saldo R$% inválido', NEW.saldo;
+		RETURN NULL;
+	END IF;	
+	
+END; $$
+
+CREATE TRIGGER tg_validador_de_saldo
+BEFORE INSERT OR UPDATE ON tb_pessoa
+FOR EACH ROW
+	EXECUTE PROCEDURE fn_validador_de_saldo();
+
+
+INSERT INTO tb_pessoa(nome, idade, saldo) VALUES
+	('João', 20, 100),
+	('Pedro', 22, -100), -- não foi inserido na tabela
+	('Marta', 22, 450);
+
+SELECT * FROM tb_pessoa;
+
+--- ... --- 
+
 --Variávei especiais
 -- removendo dados da trigger
 
