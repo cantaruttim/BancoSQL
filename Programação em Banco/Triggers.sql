@@ -1,5 +1,8 @@
 -- TRIGGERS
 
+UPDATE tb_pessoa SET saldo = -100 WHERE cod_pessoa = 1;
+
+
 DROP TABLE IF EXISTS tb_pessoa;
 CREATE TABLE IF NOT EXISTS tb_pessoa(
 	cod_pessoa SERIAL PRIMARY KEY,
