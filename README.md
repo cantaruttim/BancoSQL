@@ -22,4 +22,5 @@ PL/pgSQL | PostgreSQL | PostgreSQL |
         - [Integrando o Python com o Postgres](https://github.com/cantaruttim/BancoSQL/tree/main/Programa%C3%A7%C3%A3o%20em%20Banco/Integra)
         - [Estruturas de Seleção](https://github.com/cantaruttim/BancoSQL/blob/main/Programa%C3%A7%C3%A3o%20em%20Banco/Estruturas_de_Selecao.sql)
         - [Exercício - Estruturas de Seleção](https://github.com/cantaruttim/BancoSQL/blob/main/Programa%C3%A7%C3%A3o%20em%20Banco/Exercicios_Selecao.sql)
+        - [Triggers](https://github.com/cantaruttim/BancoSQL/blob/main/Programa%C3%A7%C3%A3o%20em%20Banco/Triggers.sql)
 2. [Importação de Arquivos](https://github.com/cantaruttim/BancoSQL/tree/main/Importa%C3%A7%C3%A3o%20de%20Arquivos)
