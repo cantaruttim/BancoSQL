@@ -46,9 +46,10 @@ BEGIN
 END ; $$
 
 -- criando o trigger (vínculo entre a trigger e a tabela)	
+DROP TRIGGER tg_antes_do_insert ON tb_teste_trigger;
 CREATE OR REPLACE TRIGGER tg_antes_do_insert
 BEFORE INSERT OR UPDATE ON tb_teste_trigger
-FOR EACH STATEMENT 
+FOR EACH ROW
 	EXECUTE PROCEDURE fn_antes_de_um_insert('Antes: V1', 'Antes: V2');
 
 
@@ -82,14 +83,16 @@ BEGIN
 	
 END; $$
 
+DROP TRIGGER tg_depois_de_um_insert ON tb_teste_trigger;
 CREATE OR REPLACE TRIGGER tg_depois_de_um_insert
 AFTER INSERT OR UPDATE ON tb_teste_trigger
-FOR STATEMENT 
+FOR ROW 
 	EXECUTE FUNCTION fn_depois_de_um_insert('Depois: V1', 'Depois: V2', 'Depois: V3');
 
-
 UPDATE tb_teste_trigger SET texto = 'Novo Texto' WHERE cod_teste_trigger = 1;
-INSERT INTO tb_teste_trigger(texto) VALUES ('Um texto qualquer');
+INSERT INTO tb_teste_trigger(texto) VALUES ('Um novo texto para triggers');
+
+SELECT * FROM tb_teste_trigger;
 
 --- ... --- 
 
